@@ -14,42 +14,45 @@ import net.spy.memcached.DefaultConnectionFactory;
  * @author dfcm9
  */
 public class ConexionDB {
-    String endpoint = "proyecto1tbd2g3-shbfc6.serverless.use1.cache.amazonaws.com";
+    String endpoint = "proyecto1tbd2g3.shbfc6.0001.use1.cache.amazonaws.com";
     int port = 11211;
-    
-    public void Conectar() {
-        MemcachedClient client = null;
-        try {
-            
+    private MemcachedClient client;
 
-            // Configura el cliente con un timeout más alto
-            client = new MemcachedClient(
-                new DefaultConnectionFactory() {
-                    @Override
-                    public long getOperationTimeout() {
-                        return 5000; // Timeout de 5 segundos
-                    }
-                },
-                AddrUtil.getAddresses(endpoint + ":" + port)
-            );
+    public void conectar() {
+        try {
+            client = new MemcachedClient(AddrUtil.getAddresses(endpoint + ":" + port));
 
             System.out.println("Conectado a Memcached en AWS ElastiCache");
-
-            // Ejemplo: almacenar un valor en el caché
-            client.set("claveEjemplo", 3600, "Hola desde Java con Memcached!");
-
-            // Recuperar el valor del caché
-            String valor = (String) client.get("claveEjemplo");
-            System.out.println("Valor recuperado: " + valor);
-
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.err.println("Error al conectar a Memcached: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            if (client != null) {
-                client.shutdown();
-            }
         }
     }
 
-    
+    public void almacenarDato(String clave, String valor) {
+        if (client != null) {
+            client.set(clave, 3600, valor); // Almacena el valor durante 3600 segundos (1 hora)
+            System.out.println("Dato almacenado: " + clave + " -> " + valor);
+        } else {
+            System.err.println("El cliente no está conectado. No se puede almacenar el dato.");
+        }
+    }
+
+    public String recuperarDato(String clave) {
+        if (client != null) {
+            String valor = (String) client.get(clave);
+            System.out.println("Dato recuperado: " + clave + " -> " + valor);
+            return valor;
+        } else {
+            System.err.println("El cliente no está conectado. No se puede recuperar el dato.");
+            return null;
+        }
+    }
+
+    public void cerrar() {
+        if (client != null) {
+            client.shutdown();
+            System.out.println("Cliente de Memcached cerrado.");
+        }
+    }
 }

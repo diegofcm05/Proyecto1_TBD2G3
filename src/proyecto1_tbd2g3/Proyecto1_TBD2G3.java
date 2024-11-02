@@ -14,12 +14,18 @@ public class Proyecto1_TBD2G3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola tigre");
-        System.out.println("Nos conectaremos a Elasticache");
+        ConexionDB conexion = new ConexionDB();
+        conexion.conectar();
         
-        ConexionDB con = new ConexionDB();
-        con.Conectar();
-        // TODO code application logic here
+        //Almacenar un dato
+        //conexion.almacenarDato("mi_clave3", "mi_valor3");
+        
+        // Recuperar un dato
+        conexion.recuperarDato("mi_clave3");
+
+        
+        // Cerrar la conexión
+        conexion.cerrar();
     }
     
 }
