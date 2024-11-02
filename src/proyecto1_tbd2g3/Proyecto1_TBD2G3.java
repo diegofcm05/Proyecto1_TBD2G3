@@ -15,6 +15,10 @@ public class Proyecto1_TBD2G3 {
      */
     public static void main(String[] args) {
         System.out.println("Hola tigre");
+        System.out.println("Nos conectaremos a Elasticache");
+        
+        ConexionDB con = new ConexionDB();
+        con.Conectar();
         // TODO code application logic here
     }
     
