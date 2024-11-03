@@ -424,6 +424,11 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Agregar Medicamento");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -1165,6 +1170,14 @@ public class LOG_IN extends javax.swing.JFrame {
         JD_AdminFarmacia.dispose();
         AbrirVentana(JD_InfoFarmacias);
     }//GEN-LAST:event_jl_InfoFarmaciasMouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // Codigo Prueba para la base de datos
+        ConexionDB con = new ConexionDB();
+        con.Conectar();
+        con.insertPerson("200", "Diego", "Lara", 32);
+        
+    }//GEN-LAST:event_jLabel14MouseClicked
 
     /**
      * @param args the command line arguments
