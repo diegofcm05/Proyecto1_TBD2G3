@@ -337,7 +337,7 @@ public class LOG_IN extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(rb_no))
                             .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         JD_AgregarProductoLayout.setVerticalGroup(
             JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1151,16 +1151,15 @@ public class LOG_IN extends javax.swing.JFrame {
         if (rb_si.isSelected()) {
             p.setS_s(true);
             productos.add(p);
+            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), p.getUnidades(), p.isS_s());
             JD_AgregarProducto.dispose();
             this.setVisible(true);
         } else if (rb_no.isSelected()) {
             p.setS_s(false);
+            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), p.getUnidades(), p.isS_s());
             productos.add(p);
             JD_AgregarProducto.dispose();
             this.setVisible(true);
-            
-            
-            
             
         } else {
             JOptionPane.showMessageDialog(JD_AgregarProducto, "Tiene que seleccionar si esta protegido o no", "Seleccion Invalida", JOptionPane.ERROR_MESSAGE);
@@ -1173,6 +1172,7 @@ public class LOG_IN extends javax.swing.JFrame {
         f.setName(tf_nameFarmacia.getText());
         f.setAddress(tf_direccion.getText());
         f.setOwner((Farmaceutico) cb_ownerF.getSelectedItem());
+        con.insertFarmacia(f.getId(), f.getName(), f.getAddress(), f.getOwner().getId(), f.getOwner().getFirst_n() + " " + f.getOwner().getLast_n());
         tf_nameFarmacia.setText("");
         tf_direccion.setText("");
         farmacias.add(f);
@@ -1191,6 +1191,7 @@ public class LOG_IN extends javax.swing.JFrame {
         l.setAddress(tf_direccionLab.getText());
         l.setInfo_cntc(ftf_infoCntc.getText());
         l.setName(tf_nameLab.getText());
+        con.insertLaboratorio(l.getId(), l.getAddress(), l.getInfo_cntc());
         tf_direccionLab.setText("");
         ftf_infoCntc.setText("");
         tf_nameLab.setText("");
@@ -1203,6 +1204,7 @@ public class LOG_IN extends javax.swing.JFrame {
         Cliente c = new Cliente();
         c.setId(Integer.parseInt(UUID.randomUUID().toString()));
         c.setUser(tf_nameCliente.getText());
+        con.insertCliente(c.getUser(), c.getUser());
         tf_nameCliente.setText("");
         tf_direccionLab.setText("");
         ftf_infoCntc.setText("");
