@@ -28,12 +28,17 @@ public class LOG_IN extends javax.swing.JFrame {
     Cliente admin = new Cliente(0, "admin");
     boolean adminFlag = false;
     boolean userFlag = false;
+    ConexionDB con = new ConexionDB();
 
     public LOG_IN() {
         initComponents();
-        bt_crearFarmacia.setEnabled(false);
-        bt_crearCliente.setEnabled(false);
-        bt_crearLab.setEnabled(false);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        con.Conectar();
+        //bt_crearFarmacia.setEnabled(false);
+        //bt_crearCliente.setEnabled(false);
+        //bt_crearLab.setEnabled(false);
+        
     }
     Color fondo;
 
@@ -46,44 +51,13 @@ public class LOG_IN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JD_VistaCliente = new javax.swing.JDialog();
-        jPanel15 = new javax.swing.JPanel();
-        jp_SalirVistaCliente = new javax.swing.JPanel();
-        jl_SalirVistaCliente = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jPanel23 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        JD_AdminFarmacia = new javax.swing.JDialog();
-        jPanel9 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jl_Inventory = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jl_GestionFarmacias = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        jl_InfoFarmacias = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jl_Reabastecer = new javax.swing.JLabel();
-        jp_SalirVistaAdmin = new javax.swing.JPanel();
-        jl_SalirVistaAdmin = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
         JD_Lab = new javax.swing.JDialog();
         jPanel16 = new javax.swing.JPanel();
-        jp_SalirVistaLab = new javax.swing.JPanel();
-        jl_SalirVistaLab = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
+        btn_AgregarMedicamento = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        btn_SalirMenuLabs = new javax.swing.JButton();
         JD_AgregarProducto = new javax.swing.JDialog();
         jLabel31 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -107,13 +81,12 @@ public class LOG_IN extends javax.swing.JFrame {
         JT_ComprarProducto = new javax.swing.JTable();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel21 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jp_SalirCompras = new javax.swing.JPanel();
-        jl_SalirCompras = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
+        btn_SalirCompra = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         JD_Reabastecimiento = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jSeparator6 = new javax.swing.JSeparator();
@@ -134,8 +107,11 @@ public class LOG_IN extends javax.swing.JFrame {
         JSP_InfoFarmacias = new javax.swing.JScrollPane();
         JT_InfoFarmacias = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
-        jp_SalirInfoFarmacias = new javax.swing.JPanel();
-        jl_SalirInfoFarmacias = new javax.swing.JLabel();
+        btn_salirInfoFarmacias = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         JD_Inventory = new javax.swing.JDialog();
         jPanel25 = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
@@ -178,281 +154,14 @@ public class LOG_IN extends javax.swing.JFrame {
         bt_crearLab = new javax.swing.JButton();
         bt_logIn = new javax.swing.JButton();
         bt_farmacia = new javax.swing.JButton();
-        bt_cliente = new javax.swing.JButton();
         bt_cliente1 = new javax.swing.JButton();
-
-        jPanel15.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jp_SalirVistaCliente.setBackground(new java.awt.Color(204, 0, 0));
-
-        jl_SalirVistaCliente.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jl_SalirVistaCliente.setForeground(new java.awt.Color(255, 255, 255));
-        jl_SalirVistaCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_SalirVistaCliente.setText("Salir");
-        jl_SalirVistaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaClienteMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaClienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaClienteMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_SalirVistaClienteLayout = new javax.swing.GroupLayout(jp_SalirVistaCliente);
-        jp_SalirVistaCliente.setLayout(jp_SalirVistaClienteLayout);
-        jp_SalirVistaClienteLayout.setHorizontalGroup(
-            jp_SalirVistaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirVistaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-        jp_SalirVistaClienteLayout.setVerticalGroup(
-            jp_SalirVistaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SalirVistaClienteLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_SalirVistaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel15.add(jp_SalirVistaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, 30));
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Menu Principal Cliente");
-        jPanel15.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 300, 40));
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel15.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 310, 10));
-
-        jPanel23.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel17.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Realizar Compra");
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jPanel15.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 220, 40));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escencia.png"))); // NOI18N
-        jLabel18.setText("jLabel18");
-        jPanel15.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 470, 410));
-
-        javax.swing.GroupLayout JD_VistaClienteLayout = new javax.swing.GroupLayout(JD_VistaCliente.getContentPane());
-        JD_VistaCliente.getContentPane().setLayout(JD_VistaClienteLayout);
-        JD_VistaClienteLayout.setHorizontalGroup(
-            JD_VistaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        JD_VistaClienteLayout.setVerticalGroup(
-            JD_VistaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel10.setBackground(new java.awt.Color(0, 102, 0));
-
-        jl_Inventory.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jl_Inventory.setForeground(new java.awt.Color(255, 255, 255));
-        jl_Inventory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_Inventory.setText("Inventario");
-        jl_Inventory.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_InventoryMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_Inventory, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_Inventory, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        jPanel11.setBackground(new java.awt.Color(0, 102, 0));
-
-        jl_GestionFarmacias.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jl_GestionFarmacias.setForeground(new java.awt.Color(255, 255, 255));
-        jl_GestionFarmacias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_GestionFarmacias.setText("Gestión de Farmacias");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_GestionFarmacias, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_GestionFarmacias, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 180, 40));
-
-        jPanel12.setBackground(new java.awt.Color(0, 102, 0));
-
-        jl_InfoFarmacias.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jl_InfoFarmacias.setForeground(new java.awt.Color(255, 255, 255));
-        jl_InfoFarmacias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_InfoFarmacias.setText("Farmacias Disponibles");
-        jl_InfoFarmacias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_InfoFarmaciasMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_InfoFarmacias, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_InfoFarmacias, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 40));
-
-        jPanel13.setBackground(new java.awt.Color(0, 102, 0));
-
-        jl_Reabastecer.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jl_Reabastecer.setForeground(new java.awt.Color(255, 255, 255));
-        jl_Reabastecer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_Reabastecer.setText("Reabastecimiento");
-        jl_Reabastecer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_ReabastecerMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_Reabastecer, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_Reabastecer, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 180, 40));
-
-        jp_SalirVistaAdmin.setBackground(new java.awt.Color(204, 0, 0));
-
-        jl_SalirVistaAdmin.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jl_SalirVistaAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        jl_SalirVistaAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_SalirVistaAdmin.setText("Salir");
-        jl_SalirVistaAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaAdminMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaAdminMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaAdminMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_SalirVistaAdminLayout = new javax.swing.GroupLayout(jp_SalirVistaAdmin);
-        jp_SalirVistaAdmin.setLayout(jp_SalirVistaAdminLayout);
-        jp_SalirVistaAdminLayout.setHorizontalGroup(
-            jp_SalirVistaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirVistaAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-        );
-        jp_SalirVistaAdminLayout.setVerticalGroup(
-            jp_SalirVistaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_SalirVistaAdminLayout.createSequentialGroup()
-                .addComponent(jl_SalirVistaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jPanel9.add(jp_SalirVistaAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, 30));
-
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel9.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 580, 10));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Menu Principal Administrador de Farmacias");
-        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 570, 40));
-
-        javax.swing.GroupLayout JD_AdminFarmaciaLayout = new javax.swing.GroupLayout(JD_AdminFarmacia.getContentPane());
-        JD_AdminFarmacia.getContentPane().setLayout(JD_AdminFarmaciaLayout);
-        JD_AdminFarmaciaLayout.setHorizontalGroup(
-            JD_AdminFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
-        );
-        JD_AdminFarmaciaLayout.setVerticalGroup(
-            JD_AdminFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btn_RealizarCompra1 = new javax.swing.JButton();
 
         jPanel16.setBackground(new java.awt.Color(51, 51, 51));
-
-        jp_SalirVistaLab.setBackground(new java.awt.Color(204, 0, 0));
-
-        jl_SalirVistaLab.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jl_SalirVistaLab.setForeground(new java.awt.Color(255, 255, 255));
-        jl_SalirVistaLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_SalirVistaLab.setText("Salir");
-        jl_SalirVistaLab.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaLabMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaLabMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jl_SalirVistaLabMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jp_SalirVistaLabLayout = new javax.swing.GroupLayout(jp_SalirVistaLab);
-        jp_SalirVistaLab.setLayout(jp_SalirVistaLabLayout);
-        jp_SalirVistaLabLayout.setHorizontalGroup(
-            jp_SalirVistaLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirVistaLab, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-        );
-        jp_SalirVistaLabLayout.setVerticalGroup(
-            jp_SalirVistaLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SalirVistaLabLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_SalirVistaLab, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
@@ -462,118 +171,61 @@ public class LOG_IN extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel19.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel13.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Atender Pedidos");
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel20.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel14.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Agregar Medicamento");
-        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_AgregarMedicamento.setBackground(new java.awt.Color(0, 51, 0));
+        btn_AgregarMedicamento.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        btn_AgregarMedicamento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AgregarMedicamento.setText("Agregar Medicamento");
+        btn_AgregarMedicamento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_AgregarMedicamento.setFocusable(false);
+        btn_AgregarMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel14MouseClicked(evt);
+                btn_AgregarMedicamentoMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-        );
+        jButton6.setBackground(new java.awt.Color(0, 51, 0));
+        jButton6.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Medicamentos Almacenados");
+        jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton6.setFocusable(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
-        jPanel21.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel15.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Gestion de Productos");
-
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-        );
-
-        jPanel22.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel16.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Atender Pedidos");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-        );
-
-        jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        btn_SalirMenuLabs.setBackground(new java.awt.Color(153, 0, 0));
+        btn_SalirMenuLabs.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btn_SalirMenuLabs.setForeground(new java.awt.Color(255, 255, 255));
+        btn_SalirMenuLabs.setText("Salir");
+        btn_SalirMenuLabs.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_SalirMenuLabs.setFocusable(false);
+        btn_SalirMenuLabs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_SalirMenuLabsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jp_SalirVistaLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_AgregarMedicamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel16Layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jLabel4))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 115, Short.MAX_VALUE)))
-                .addGap(49, 49, 49))
-            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel16Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(154, Short.MAX_VALUE)))
+                            .addComponent(btn_SalirMenuLabs, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4)))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,26 +234,13 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(66, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jp_SalirVistaLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
-            .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel16Layout.createSequentialGroup()
-                    .addGap(64, 64, 64)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(347, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addComponent(btn_AgregarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btn_SalirMenuLabs, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout JD_LabLayout = new javax.swing.GroupLayout(JD_Lab.getContentPane());
@@ -698,7 +337,7 @@ public class LOG_IN extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(rb_no))
                             .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         JD_AgregarProductoLayout.setVerticalGroup(
             JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,15 +372,17 @@ public class LOG_IN extends javax.swing.JFrame {
                     .addComponent(rb_no))
                 .addGap(18, 18, 18)
                 .addComponent(bt_agregar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
+        JD_RealizarCompra.setTitle("Comprar Producto - Farmacias DJHR");
+
+        jPanel2.setBackground(new java.awt.Color(0, 51, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 270, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 820, 10));
 
         JT_ComprarProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -756,110 +397,74 @@ public class LOG_IN extends javax.swing.JFrame {
         ));
         JSP_ComprarProducto.setViewportView(JT_ComprarProducto);
 
-        jPanel2.add(JSP_ComprarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 890, -1));
+        jPanel2.add(JSP_ComprarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 800, 350));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 110, 40));
+        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 110, 40));
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("Comprar Productos");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
-
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel20.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Finalizar Pedido");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, 130, 40));
+        jLabel21.setText("Comprar Producto - Farmacias DJHR");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 40));
 
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Cantidad:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 80, 30));
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 80, 20));
 
-        jp_SalirCompras.setBackground(new java.awt.Color(204, 0, 0));
-
-        jl_SalirCompras.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jl_SalirCompras.setForeground(new java.awt.Color(255, 255, 255));
-        jl_SalirCompras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_SalirCompras.setText("Salir");
-        jl_SalirCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_SalirCompra.setBackground(new java.awt.Color(153, 0, 0));
+        btn_SalirCompra.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btn_SalirCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btn_SalirCompra.setText("Salir");
+        btn_SalirCompra.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_SalirCompra.setFocusable(false);
+        btn_SalirCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_SalirComprasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jl_SalirComprasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jl_SalirComprasMouseExited(evt);
+                btn_SalirCompraMouseClicked(evt);
             }
         });
+        jPanel2.add(btn_SalirCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, 140, 40));
 
-        javax.swing.GroupLayout jp_SalirComprasLayout = new javax.swing.GroupLayout(jp_SalirCompras);
-        jp_SalirCompras.setLayout(jp_SalirComprasLayout);
-        jp_SalirComprasLayout.setHorizontalGroup(
-            jp_SalirComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirCompras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-        );
-        jp_SalirComprasLayout.setVerticalGroup(
-            jp_SalirComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SalirComprasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_SalirCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Finalizar Pedido");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton1.setFocusable(false);
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 170, 40));
 
-        jPanel2.add(jp_SalirCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 510, -1, -1));
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Agregar Producto");
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.setFocusable(false);
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 170, 40));
 
-        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Al finalizar, de clic en finalizar pedido.");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jLabel27.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel27.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Agregar Producto");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("De la tabla, seleccione algun producto que desee comprar. Posteriormente, especifique la cantidad y de clic en \"Agregar Producto\"");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         javax.swing.GroupLayout JD_RealizarCompraLayout = new javax.swing.GroupLayout(JD_RealizarCompra.getContentPane());
         JD_RealizarCompra.getContentPane().setLayout(JD_RealizarCompraLayout);
         JD_RealizarCompraLayout.setHorizontalGroup(
             JD_RealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
         );
         JD_RealizarCompraLayout.setVerticalGroup(
             JD_RealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel5.setBackground(new java.awt.Color(0, 51, 0));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
@@ -982,12 +587,12 @@ public class LOG_IN extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
         );
 
-        jPanel24.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel24.setBackground(new java.awt.Color(0, 51, 0));
         jPanel24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator7.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel24.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 310, 20));
+        jPanel24.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 900, 10));
 
         JT_InfoFarmacias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1002,64 +607,64 @@ public class LOG_IN extends javax.swing.JFrame {
         ));
         JSP_InfoFarmacias.setViewportView(JT_InfoFarmacias);
 
-        jPanel24.add(JSP_InfoFarmacias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 980, 450));
+        jPanel24.add(JSP_InfoFarmacias, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 880, 330));
 
         jLabel28.setBackground(new java.awt.Color(255, 255, 255));
         jLabel28.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Informacion Farmacias");
-        jPanel24.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
+        jLabel28.setText("Informacion de Farmacias Administradas");
+        jPanel24.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 40));
 
-        jp_SalirInfoFarmacias.setBackground(new java.awt.Color(204, 0, 0));
-
-        jl_SalirInfoFarmacias.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jl_SalirInfoFarmacias.setForeground(new java.awt.Color(255, 255, 255));
-        jl_SalirInfoFarmacias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_SalirInfoFarmacias.setText("Salir");
-        jl_SalirInfoFarmacias.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_salirInfoFarmacias.setBackground(new java.awt.Color(153, 0, 0));
+        btn_salirInfoFarmacias.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btn_salirInfoFarmacias.setForeground(new java.awt.Color(255, 255, 255));
+        btn_salirInfoFarmacias.setText("Salir");
+        btn_salirInfoFarmacias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_SalirInfoFarmaciasMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jl_SalirInfoFarmaciasMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jl_SalirInfoFarmaciasMouseExited(evt);
+                btn_salirInfoFarmaciasMouseClicked(evt);
             }
         });
+        jPanel24.add(btn_salirInfoFarmacias, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 490, 110, 40));
 
-        javax.swing.GroupLayout jp_SalirInfoFarmaciasLayout = new javax.swing.GroupLayout(jp_SalirInfoFarmacias);
-        jp_SalirInfoFarmacias.setLayout(jp_SalirInfoFarmaciasLayout);
-        jp_SalirInfoFarmaciasLayout.setHorizontalGroup(
-            jp_SalirInfoFarmaciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirInfoFarmacias, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-        );
-        jp_SalirInfoFarmaciasLayout.setVerticalGroup(
-            jp_SalirInfoFarmaciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_SalirInfoFarmaciasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_SalirInfoFarmacias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jButton3.setBackground(new java.awt.Color(51, 51, 51));
+        jButton3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Ver Inventario");
+        jPanel24.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 180, 40));
 
-        jPanel24.add(jp_SalirInfoFarmacias, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 510, -1, -1));
+        jButton4.setBackground(new java.awt.Color(51, 51, 51));
+        jButton4.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Reabastecer Farmacia");
+        jPanel24.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, 210, 40));
+
+        jLabel8.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Para ver el inventario de alguna de ellas, seleccione la farmacia y de clic en \"Ver Inventario\"");
+        jPanel24.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("En esta pagina puede ver todas las farmacias que usted administra.");
+        jPanel24.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         javax.swing.GroupLayout JD_InfoFarmaciasLayout = new javax.swing.GroupLayout(JD_InfoFarmacias.getContentPane());
         JD_InfoFarmacias.getContentPane().setLayout(JD_InfoFarmaciasLayout);
         JD_InfoFarmaciasLayout.setHorizontalGroup(
             JD_InfoFarmaciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
         );
         JD_InfoFarmaciasLayout.setVerticalGroup(
             JD_InfoFarmaciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
 
-        jPanel25.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel25.setBackground(new java.awt.Color(0, 51, 0));
         jPanel25.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator8.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel25.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 340, 20));
+        jPanel25.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 900, 10));
 
         JT_Inventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1074,13 +679,13 @@ public class LOG_IN extends javax.swing.JFrame {
         ));
         JSP_Inventario.setViewportView(JT_Inventario);
 
-        jPanel25.add(JSP_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 980, 450));
+        jPanel25.add(JSP_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 850, 360));
 
         jLabel29.setBackground(new java.awt.Color(255, 255, 255));
         jLabel29.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setText("Inventario de la Farmacia");
-        jPanel25.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 40));
+        jPanel25.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 40));
 
         jp_SalirInventario.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -1104,7 +709,9 @@ public class LOG_IN extends javax.swing.JFrame {
         jp_SalirInventario.setLayout(jp_SalirInventarioLayout);
         jp_SalirInventarioLayout.setHorizontalGroup(
             jp_SalirInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jl_SalirInventario, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addGroup(jp_SalirInventarioLayout.createSequentialGroup()
+                .addComponent(jl_SalirInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         jp_SalirInventarioLayout.setVerticalGroup(
             jp_SalirInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1113,13 +720,13 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addComponent(jl_SalirInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel25.add(jp_SalirInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 510, -1, -1));
+        jPanel25.add(jp_SalirInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 490, -1, -1));
 
         javax.swing.GroupLayout JD_InventoryLayout = new javax.swing.GroupLayout(JD_Inventory.getContentPane());
         JD_Inventory.getContentPane().setLayout(JD_InventoryLayout);
         JD_InventoryLayout.setHorizontalGroup(
             JD_InventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
         );
         JD_InventoryLayout.setVerticalGroup(
             JD_InventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1337,6 +944,11 @@ public class LOG_IN extends javax.swing.JFrame {
                 bt_logIn1MouseClicked(evt);
             }
         });
+        bt_logIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_logIn1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JD_LogInLayout = new javax.swing.GroupLayout(JD_LogIn.getContentPane());
         JD_LogIn.getContentPane().setLayout(JD_LogInLayout);
@@ -1368,140 +980,141 @@ public class LOG_IN extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Inicial - Farmacias DJHR");
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        bt_crearFarmacia.setBackground(new java.awt.Color(0, 51, 0));
+        bt_crearFarmacia.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_crearFarmacia.setForeground(new java.awt.Color(255, 255, 255));
         bt_crearFarmacia.setText("Crear Farmacia");
+        bt_crearFarmacia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_crearFarmacia.setFocusable(false);
         bt_crearFarmacia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_crearFarmaciaMouseClicked(evt);
             }
         });
-        jPanel1.add(bt_crearFarmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 120, -1));
+        jPanel1.add(bt_crearFarmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 220, 50));
 
-        bt_crearCliente.setText("Crear Cliente");
+        bt_crearCliente.setBackground(new java.awt.Color(0, 51, 0));
+        bt_crearCliente.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_crearCliente.setForeground(new java.awt.Color(255, 255, 255));
+        bt_crearCliente.setText("Registrar Cliente");
+        bt_crearCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_crearCliente.setFocusable(false);
         bt_crearCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_crearClienteMouseClicked(evt);
             }
         });
-        jPanel1.add(bt_crearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 120, -1));
+        jPanel1.add(bt_crearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 220, 50));
 
+        bt_crearLab.setBackground(new java.awt.Color(0, 51, 0));
+        bt_crearLab.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_crearLab.setForeground(new java.awt.Color(255, 255, 255));
         bt_crearLab.setText("Crear Laboratorio");
+        bt_crearLab.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_crearLab.setFocusable(false);
         bt_crearLab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_crearLabMouseClicked(evt);
             }
         });
-        jPanel1.add(bt_crearLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+        jPanel1.add(bt_crearLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 220, 50));
 
+        bt_logIn.setBackground(new java.awt.Color(0, 51, 51));
+        bt_logIn.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_logIn.setForeground(new java.awt.Color(255, 255, 255));
         bt_logIn.setText("Log In");
+        bt_logIn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_logIn.setFocusable(false);
         bt_logIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_logInMouseClicked(evt);
             }
         });
-        jPanel1.add(bt_logIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
+        jPanel1.add(bt_logIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, 120, 40));
 
-        bt_farmacia.setText("Farmacia");
+        bt_farmacia.setBackground(new java.awt.Color(0, 51, 0));
+        bt_farmacia.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_farmacia.setForeground(new java.awt.Color(255, 255, 255));
+        bt_farmacia.setText("Farmacias");
+        bt_farmacia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_farmacia.setFocusable(false);
         bt_farmacia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_farmaciaMouseClicked(evt);
             }
         });
-        jPanel1.add(bt_farmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 120, -1));
+        jPanel1.add(bt_farmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 220, 50));
 
-        bt_cliente.setText("Clientes");
-        bt_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_clienteMouseClicked(evt);
-            }
-        });
-        jPanel1.add(bt_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, -1));
-
+        bt_cliente1.setBackground(new java.awt.Color(0, 51, 0));
+        bt_cliente1.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        bt_cliente1.setForeground(new java.awt.Color(255, 255, 255));
         bt_cliente1.setText("Laboratorios");
+        bt_cliente1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        bt_cliente1.setFocusable(false);
         bt_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_cliente1MouseClicked(evt);
             }
         });
-        jPanel1.add(bt_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 120, -1));
+        jPanel1.add(bt_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 220, 50));
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Farmacias DJHR");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 220, 40));
+
+        jSeparator9.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator9.setPreferredSize(new java.awt.Dimension(50, 20));
+        jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 600, 10));
+
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Si usted es un administrador, utilice el boton de \"Log In\" para acceder a demas opciones.");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 580, -1));
+
+        jLabel6.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Bienvenido a Farmacas DJHR.");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 580, -1));
+
+        btn_RealizarCompra1.setBackground(new java.awt.Color(0, 51, 0));
+        btn_RealizarCompra1.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        btn_RealizarCompra1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_RealizarCompra1.setText("Realizar Compra ");
+        btn_RealizarCompra1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_RealizarCompra1.setFocusable(false);
+        btn_RealizarCompra1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_RealizarCompra1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(btn_RealizarCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jl_SalirVistaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaClienteMouseClicked
-        JD_VistaCliente.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_jl_SalirVistaClienteMouseClicked
-
-    private void jl_SalirVistaAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaAdminMouseClicked
-        JD_AdminFarmacia.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_jl_SalirVistaAdminMouseClicked
-
-    private void jl_SalirVistaLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaLabMouseClicked
-        JD_Lab.dispose();
-        this.setVisible(true);
-    }//GEN-LAST:event_jl_SalirVistaLabMouseClicked
-
-    private void jl_SalirVistaLabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaLabMouseEntered
-        fondo = jp_SalirVistaLab.getBackground();
-        jp_SalirVistaLab.setBackground(Color.red);
-    }//GEN-LAST:event_jl_SalirVistaLabMouseEntered
-
-    private void jl_SalirVistaLabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaLabMouseExited
-        // TODO add your handling code here:
-        jp_SalirVistaLab.setBackground(fondo);
-    }//GEN-LAST:event_jl_SalirVistaLabMouseExited
-
-    private void jl_SalirVistaClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaClienteMouseEntered
-        fondo = jp_SalirVistaCliente.getBackground();
-        jp_SalirVistaCliente.setBackground(Color.red);
-    }//GEN-LAST:event_jl_SalirVistaClienteMouseEntered
-
-    private void jl_SalirVistaClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaClienteMouseExited
-        jp_SalirVistaCliente.setBackground(fondo);
-    }//GEN-LAST:event_jl_SalirVistaClienteMouseExited
-
-    private void jl_SalirVistaAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaAdminMouseEntered
-        fondo = jp_SalirVistaAdmin.getBackground();
-        jp_SalirVistaAdmin.setBackground(Color.red);
-    }//GEN-LAST:event_jl_SalirVistaAdminMouseEntered
-
-    private void jl_SalirVistaAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaAdminMouseExited
-        jp_SalirVistaAdmin.setBackground(fondo);
-    }//GEN-LAST:event_jl_SalirVistaAdminMouseExited
-
-    private void jl_SalirComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirComprasMouseClicked
-        JD_RealizarCompra.dispose();
-        AbrirVentana(JD_VistaCliente);
-    }//GEN-LAST:event_jl_SalirComprasMouseClicked
-
-    private void jl_SalirComprasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirComprasMouseEntered
-        fondo = jp_SalirCompras.getBackground();
-        jp_SalirCompras.setBackground(Color.red);
-    }//GEN-LAST:event_jl_SalirComprasMouseEntered
-
-    private void jl_SalirComprasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirComprasMouseExited
-        jp_SalirCompras.setBackground(fondo);
-    }//GEN-LAST:event_jl_SalirComprasMouseExited
-
     private void jl_SalirReabastecimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirReabastecimientoMouseClicked
         JD_Reabastecimiento.dispose();
-        AbrirVentana(JD_AdminFarmacia);
+        AbrirVentana(JD_InfoFarmacias);
     }//GEN-LAST:event_jl_SalirReabastecimientoMouseClicked
 
     private void jl_SalirReabastecimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirReabastecimientoMouseEntered
@@ -1513,33 +1126,9 @@ public class LOG_IN extends javax.swing.JFrame {
         jp_SalirReabastecimiento.setBackground(fondo);
     }//GEN-LAST:event_jl_SalirReabastecimientoMouseExited
 
-    private void jl_ReabastecerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_ReabastecerMouseClicked
-        JD_AdminFarmacia.dispose();
-        AbrirVentana(JD_Reabastecimiento);
-    }//GEN-LAST:event_jl_ReabastecerMouseClicked
-
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-        JD_VistaCliente.dispose();
-        AbrirVentana(JD_RealizarCompra);
-    }//GEN-LAST:event_jLabel17MouseClicked
-
-    private void jl_SalirInfoFarmaciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInfoFarmaciasMouseClicked
-        JD_InfoFarmacias.dispose();
-        AbrirVentana(JD_AdminFarmacia);
-    }//GEN-LAST:event_jl_SalirInfoFarmaciasMouseClicked
-
-    private void jl_SalirInfoFarmaciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInfoFarmaciasMouseEntered
-        fondo = jp_SalirInfoFarmacias.getBackground();
-        jp_SalirInfoFarmacias.setBackground(Color.red);
-    }//GEN-LAST:event_jl_SalirInfoFarmaciasMouseEntered
-
-    private void jl_SalirInfoFarmaciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInfoFarmaciasMouseExited
-        jp_SalirInfoFarmacias.setBackground(fondo);
-    }//GEN-LAST:event_jl_SalirInfoFarmaciasMouseExited
-
     private void jl_SalirInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInventarioMouseClicked
         JD_Inventory.dispose();
-        AbrirVentana(JD_AdminFarmacia);
+        AbrirVentana(JD_InfoFarmacias);
     }//GEN-LAST:event_jl_SalirInventarioMouseClicked
 
     private void jl_SalirInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInventarioMouseEntered
@@ -1550,24 +1139,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private void jl_SalirInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInventarioMouseExited
         jp_SalirInventario.setBackground(fondo);
     }//GEN-LAST:event_jl_SalirInventarioMouseExited
-
-    private void jl_InventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_InventoryMouseClicked
-        JD_AdminFarmacia.dispose();
-        AbrirVentana(JD_Inventory);
-    }//GEN-LAST:event_jl_InventoryMouseClicked
-
-    private void jl_InfoFarmaciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_InfoFarmaciasMouseClicked
-        JD_AdminFarmacia.dispose();
-        AbrirVentana(JD_InfoFarmacias);
-    }//GEN-LAST:event_jl_InfoFarmaciasMouseClicked
-
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        // Codigo Prueba para la base de datos
-        ConexionDB con = new ConexionDB();
-        con.Conectar();
-        con.insertPerson("200", "Diego", "Lara", 32);
-
-    }//GEN-LAST:event_jLabel14MouseClicked
 
     private void bt_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarMouseClicked
         Producto p = new Producto();
@@ -1587,6 +1158,10 @@ public class LOG_IN extends javax.swing.JFrame {
             productos.add(p);
             JD_AgregarProducto.dispose();
             this.setVisible(true);
+            
+            
+            
+            
         } else {
             JOptionPane.showMessageDialog(JD_AgregarProducto, "Tiene que seleccionar si esta protegido o no", "Seleccion Invalida", JOptionPane.ERROR_MESSAGE);
         }
@@ -1668,13 +1243,8 @@ public class LOG_IN extends javax.swing.JFrame {
 
     private void bt_farmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_farmaciaMouseClicked
         this.setVisible(false);
-        AbrirVentana(JD_AdminFarmacia);
+        AbrirVentana(JD_InfoFarmacias);
     }//GEN-LAST:event_bt_farmaciaMouseClicked
-
-    private void bt_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clienteMouseClicked
-        this.setVisible(false);
-        AbrirVentana(JD_VistaCliente);
-    }//GEN-LAST:event_bt_clienteMouseClicked
 
     private void bt_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cliente1MouseClicked
         this.setVisible(false);
@@ -1684,6 +1254,39 @@ public class LOG_IN extends javax.swing.JFrame {
     private void bt_logInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_logInMouseClicked
         AbrirVentana(JD_LogIn);
     }//GEN-LAST:event_bt_logInMouseClicked
+
+    private void btn_RealizarCompra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RealizarCompra1MouseClicked
+        this.setVisible(false);
+        AbrirVentana(JD_RealizarCompra);
+    }//GEN-LAST:event_btn_RealizarCompra1MouseClicked
+
+    private void bt_logIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_logIn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_logIn1ActionPerformed
+
+    private void btn_salirInfoFarmaciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirInfoFarmaciasMouseClicked
+        JD_InfoFarmacias.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_salirInfoFarmaciasMouseClicked
+
+    private void btn_SalirCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirCompraMouseClicked
+        JD_RealizarCompra.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_SalirCompraMouseClicked
+
+    private void btn_AgregarMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMedicamentoMouseClicked
+        // Codigo Prueba para la base de datos
+        con.insertPerson("250", "Rodrigo", "Vasquez", 19);
+    }//GEN-LAST:event_btn_AgregarMedicamentoMouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void btn_SalirMenuLabsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalirMenuLabsMouseClicked
+        JD_Lab.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_SalirMenuLabsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1696,7 +1299,7 @@ public class LOG_IN extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -1728,7 +1331,6 @@ public class LOG_IN extends javax.swing.JFrame {
         ventana.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog JD_AdminFarmacia;
     private javax.swing.JDialog JD_AgregarProducto;
     private javax.swing.JDialog JD_CrearCliente;
     private javax.swing.JDialog JD_CrearFarmacia;
@@ -1739,7 +1341,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JDialog JD_LogIn;
     private javax.swing.JDialog JD_Reabastecimiento;
     private javax.swing.JDialog JD_RealizarCompra;
-    private javax.swing.JDialog JD_VistaCliente;
     private javax.swing.JScrollPane JSP_ComprarProducto;
     private javax.swing.JScrollPane JSP_InfoFarmacias;
     private javax.swing.JScrollPane JSP_Inventario;
@@ -1749,7 +1350,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JTable JT_Inventario;
     private javax.swing.JTable JT_Reabastecimiento;
     private javax.swing.JButton bt_agregar;
-    private javax.swing.JButton bt_cliente;
     private javax.swing.JButton bt_cliente1;
     private javax.swing.JButton bt_crearCliente;
     private javax.swing.JButton bt_crearCliente1;
@@ -1760,29 +1360,32 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton bt_farmacia;
     private javax.swing.JButton bt_logIn;
     private javax.swing.JButton bt_logIn1;
+    private javax.swing.JButton btn_AgregarMedicamento;
+    private javax.swing.JButton btn_RealizarCompra1;
+    private javax.swing.JButton btn_SalirCompra;
+    private javax.swing.JButton btn_SalirMenuLabs;
+    private javax.swing.JButton btn_salirInfoFarmacias;
     private javax.swing.JComboBox<String> cb_fabricante;
     private javax.swing.JComboBox<String> cb_ownerF;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ftf_infoCntc;
     private javax.swing.JFormattedTextField ftf_pCoste;
     private javax.swing.JFormattedTextField ftf_pVenta;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -1804,55 +1407,30 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JLabel jl_GestionFarmacias;
-    private javax.swing.JLabel jl_InfoFarmacias;
-    private javax.swing.JLabel jl_Inventory;
-    private javax.swing.JLabel jl_Reabastecer;
-    private javax.swing.JLabel jl_SalirCompras;
-    private javax.swing.JLabel jl_SalirInfoFarmacias;
     private javax.swing.JLabel jl_SalirInventario;
     private javax.swing.JLabel jl_SalirReabastecimiento;
-    private javax.swing.JLabel jl_SalirVistaAdmin;
-    private javax.swing.JLabel jl_SalirVistaCliente;
-    private javax.swing.JLabel jl_SalirVistaLab;
-    private javax.swing.JPanel jp_SalirCompras;
-    private javax.swing.JPanel jp_SalirInfoFarmacias;
     private javax.swing.JPanel jp_SalirInventario;
     private javax.swing.JPanel jp_SalirReabastecimiento;
-    private javax.swing.JPanel jp_SalirVistaAdmin;
-    private javax.swing.JPanel jp_SalirVistaCliente;
-    private javax.swing.JPanel jp_SalirVistaLab;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
     private javax.swing.JTextField tf_direccion;

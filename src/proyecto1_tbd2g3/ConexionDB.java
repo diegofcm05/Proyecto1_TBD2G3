@@ -27,10 +27,9 @@ public class ConexionDB {
     private static String tableName = "Persona";
     
      // Establecer las credenciales de AWS
-    private String accessKey = "ASIA6ODU5YVHSMOEHMV7"; // Reemplaza con tu Access Key ID
-    private String secretKey = "/oA6d8mU/ex7W/taezioD/QyZpVuwDpUiUlVvm55"; // Reemplaza con tu Secret Access Key
-    private String sessionToken = "IQoJb3JpZ2luX2VjEGYaCXVzLXdlc3QtMiJGMEQCIA+g5bPBh4cTFcDOEWhgoQikx97y21J1BVfg7VmdpFxQAiBTJuJqXJ+dwLZ3yEET/etI0ZcqMnIwev3kR1FK51iFJCq9Agjf//////////8BEAAaDDk5MjM4MjY2NjA2MyIMTEh0u8nDgbwfYrOeKpEC1Qg0Ujl+dV87ChLdMNm9X+Byz/BMI3TwDyqcuAecJyji4P+PDtSuPFgj6D0h5ez1c8B6XZ7F0c75RA3oHAAXgOOUIk5Tze1AZPIAAy698qtcnGVGMlPToyMbM3CJzSYXRRHRgx5XTdwDlnf5DHYtR56otVUwR4vbRL8OUNt3DoXGYc3sxNbioG95LtsUj6hI3GUI8Cojf2bX+pXSWSqBnOcf8XMw4s8Y85da+ysD9/xMF/Yl2QeQXeH4Im96qAT/t5tiD8HfzB+dzSMv30zxW1yyoDDh2xnmL8gDXV2ISw6+cdeTxklcCKRhonUmuK/EZ8HaAaP+xZsIdjupJVxjM+4K4pE807hkZQ1+c9wch3COMNPfn7kGOp4BRaUC5p2vfguWK29Z7G1QJcA5dPZywASjTRxZ2uJBGd/33TnMSf4S/xTJ8VPWmgmNGWTv77TO2jgOAdwZ9GErAHnr00xOXtHHuLDCmIQEcuyNXYKjHZ563uVmNoNuL3t8P+kh3JbmQJQNswaneBxLAB3Vc6MV/Z2v4Hol9sNvLcCCG+3uYhSx2dGdPb7yoI+EnN9bJxM7bL4cVAgSbvw=";
-    
+    private String accessKey = "ASIA6ODU5YVH7YBRYVJQ"; // Reemplaza con tu Access Key ID
+    private String secretKey = "qNH32h+OoRjn++mqiDrP0faB7d9Sg+IUMULiPFQT"; // Reemplaza con tu Secret Access Key
+    private String sessionToken = "IQoJb3JpZ2luX2VjEG8aCXVzLXdlc3QtMiJGMEQCIGFPbPzxJJCzTcHbZ6NIOMBkqsfteHr1MckoCQwtAAb9AiAska3MSYr+0tITdjW9g1B0djKqXdbA2W4gRdavShM44Sq9Agjo//////////8BEAAaDDk5MjM4MjY2NjA2MyIM42uJAF7Fi6EczaalKpECwvwZobZD3OLy1ODeLWlabjhiUq+52nqGZik6GsvyaNSZ8VJaDUA0EBmcX/coHEzoT0mnYMLUUAPADa5Lfxumzt3EV19oAVXiz3YyPHrqb2ohGsTwouNdkHA6DtDqCMHeLUqRfx2up9Io4+S00nHaRgi6GMMGd2jeOZDaNYonJNnHDytCOzVtvsFhjeHP8wI2rwcitZqM0etFwleMFWy/jf5jC2IpQS9dPsZhYfCFL0dzbMNdLn6aVM+MIlE8VF02l5nrcdoAzKKxbf03v1qhWpdsBYA1MOBVYXh6tYigZVIFUYwofwajWcm3YGDD3WsDJnKdrV64O3wsZgfaMdcQqawjigYEIkRee9fXbObiD0RBMJzhobkGOp4BY+36TJDE+Fqp3Gy0Ok+gqFCTO+puTOrUyP2DVmrXqcnl+60JWj6I4DkRcPy5tWLO3yz4CNNCBstDJP4tz+8tcCn8DjhEGsd/sbXvXQ86p9IQLdcivMDaVlpkzLZBYMGpoWSKs8EZ6OCeVLD86dKViHnFmXJfWaySA1D/xlYgYFT3lk0vENCYVdeFen1sRPym9hrWoAPcu+LYWpXawpE=";
     public void Conectar(){
         // Crear las credenciales con el token de sesión
         BasicSessionCredentials awsCreds = new BasicSessionCredentials(accessKey, secretKey, sessionToken);
@@ -42,6 +41,7 @@ public class ConexionDB {
                 .build();
 
         dynamoDB = new DynamoDB(client);
+        System.out.println("Se ha establecido una conexion con DynamoDB!");
     }
 
     // Método para insertar una persona
