@@ -100,7 +100,7 @@ public class ConexionDB {
         }
     }
 
-    public void insertProduct(String id, String nombre,String fabricante, String family, String owner,int precio_Coste, int precio_Venta, int unidades, boolean subvencionado) {
+    public void insertProduct(String id, String nombre,String fabricante, String family, String owner, int precio_Coste, int precio_Venta, int unidades, boolean subvencionado) {
         try {
             // Obtener la tabla
             Table table = dynamoDB.getTable(tableName);
@@ -111,7 +111,6 @@ public class ConexionDB {
                     .withString("Nombre", nombre)
 				.withString("Fabricante", fabricante)
 				.withString("Familia", family)
-				.withString("Owner", owner)
 				.withNumber("Precio_Coste", precio_Coste)
 				.withNumber("Precio_Venta", precio_Venta)
 				.withNumber("Unidades", unidades)
@@ -147,6 +146,45 @@ public class ConexionDB {
 		System.out.print("Error al insertar el cliente");
 	}
 }
+    
+    public void insertPropietario(String id_owner, String nom){
+	try {
+		Table table = dynamoDB.getTable(tableName);
+		Item item = new Item().withPrimaryKey("id_propietario", id_owner).withString("Nombre", nom);
+		table.putItem(item);
+		System.out.print("Propietario insertado exitosamente");
+	} catch (Exception e) {
+		System.out.print("Error al insertar el propietario");
+	}
+    }
+    
+    public void insertPedido(String id_pedido, String farmaciaID, int total){
+	try {
+		Table table = dynamoDB.getTable(tableName);
+		Item item = new Item().withPrimaryKey("id_pedido", id_pedido)
+                        .withString("Farmacia", farmaciaID)
+                        .withNumber("Total", total);
+		table.putItem(item);
+		System.out.print("Pedido insertado exitosamente");
+	} catch (Exception e) {
+		System.out.print("Error al insertar el pedido");
+	}
+    }
+    
+    
+    public void insertDetallePedido(String id_pedido, String ProductoID, int cantidad , int total){
+	try {
+		Table table = dynamoDB.getTable(tableName);
+		Item item = new Item().withPrimaryKey("id_pedido", id_pedido)
+                        .withString("Producto", ProductoID)
+                        .withNumber("Cantidad", cantidad)
+                        .withNumber("Total", total);
+		table.putItem(item);
+		System.out.print("Detalle de Pedido insertado exitosamente");
+	} catch (Exception e) {
+		System.out.print("Error al insertar el detalle de Pedido");
+	}
+    }
     
     // Método para recuperar una persona
     public void retrievePerson(String id) {
