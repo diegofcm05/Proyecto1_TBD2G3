@@ -14,6 +14,7 @@ import java.util.UUID;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -33,6 +34,7 @@ public class LOG_IN extends javax.swing.JFrame {
     boolean userFlag = false;
     ConexionDB con = new ConexionDB();
     Random sr = new Random();
+    String PedidoActual;
 
     public LOG_IN() {
         initComponents();
@@ -65,7 +67,6 @@ public class LOG_IN extends javax.swing.JFrame {
         JD_AgregarProducto = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        cb_tipo = new javax.swing.JComboBox<>();
         jLabel35 = new javax.swing.JLabel();
         ftf_pVenta = new javax.swing.JFormattedTextField();
         jLabel30 = new javax.swing.JLabel();
@@ -73,7 +74,6 @@ public class LOG_IN extends javax.swing.JFrame {
         bt_agregar = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel32 = new javax.swing.JLabel();
-        cb_fabricante = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
         ftf_pCoste = new javax.swing.JFormattedTextField();
         jLabel36 = new javax.swing.JLabel();
@@ -81,12 +81,18 @@ public class LOG_IN extends javax.swing.JFrame {
         rb_no = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
+        tf_tipoMed = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        cb_labsAgregar = new javax.swing.JComboBox<>();
+        cb_farmsAgregar = new javax.swing.JComboBox<>();
+        jLabel50 = new javax.swing.JLabel();
+        js_unidadesProd = new javax.swing.JSpinner();
         JD_RealizarCompra = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         JSP_ComprarProducto = new javax.swing.JScrollPane();
         JT_ComprarProducto = new javax.swing.JTable();
-        jSpinner1 = new javax.swing.JSpinner();
+        js_Cant_Comprar = new javax.swing.JSpinner();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         btn_SalirCompra = new javax.swing.JButton();
@@ -282,8 +288,6 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Tipo");
 
-        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
         jLabel35.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
@@ -323,9 +327,7 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel32.setBackground(new java.awt.Color(255, 255, 255));
         jLabel32.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Fabricante");
-
-        cb_fabricante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel32.setText("Laboratorio Fabricante");
 
         jLabel34.setBackground(new java.awt.Color(255, 255, 255));
         jLabel34.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
@@ -350,12 +352,22 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Agregar Producto");
 
+        jLabel49.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel49.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("Farmacia Asignada");
+
+        jLabel50.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel50.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel50.setText("Unidades");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,38 +376,37 @@ public class LOG_IN extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel33)
-                                        .addComponent(ftf_pVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel35))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel34)
-                                    .addComponent(ftf_pCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel36)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(rb_si)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rb_no)))
-                                .addGap(44, 44, 44))
+                            .addComponent(ftf_pVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76))
+                                .addGap(6, 6, 6)
+                                .addComponent(tf_tipoMed, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel50)
+                            .addComponent(js_unidadesProd, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(150, 150, 150)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel49)
+                            .addComponent(cb_labsAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_farmsAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34)
+                            .addComponent(ftf_pCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel36)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel32)
-                                .addGap(159, 159, 159)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(rb_si)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rb_no)))))
+                .addGap(101, 101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel32)
+                .addGap(177, 177, 177))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
+                .addGap(206, 206, 206)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -406,39 +417,48 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(22, 22, 22)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_labsAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel49)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE))
+                        .addComponent(cb_farmsAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_tipoMed, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel34))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel35)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(ftf_pCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ftf_pVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftf_pCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ftf_pVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rb_si)
-                    .addComponent(rb_no))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rb_no)
+                    .addComponent(js_unidadesProd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(86, 86, 86)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout JD_AgregarProductoLayout = new javax.swing.GroupLayout(JD_AgregarProducto.getContentPane());
@@ -476,8 +496,8 @@ public class LOG_IN extends javax.swing.JFrame {
 
         jPanel2.add(JSP_ComprarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 800, 350));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 110, 40));
+        js_Cant_Comprar.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jPanel2.add(js_Cant_Comprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 110, 40));
 
         jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
@@ -518,6 +538,11 @@ public class LOG_IN extends javax.swing.JFrame {
         jButton2.setText("Agregar Producto");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton2.setFocusable(false);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 170, 40));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
@@ -661,6 +686,11 @@ public class LOG_IN extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Ver Inventario");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jPanel24.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 180, 40));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
@@ -715,7 +745,7 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel29.setBackground(new java.awt.Color(255, 255, 255));
         jLabel29.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setText("Inventario de la Farmacia");
+        jLabel29.setText("Inventario de las Farmacias");
         jPanel25.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 40));
 
         jp_SalirInventario.setBackground(new java.awt.Color(204, 0, 0));
@@ -1349,27 +1379,39 @@ public class LOG_IN extends javax.swing.JFrame {
 
         Producto p = new Producto();
         p.setName(tf_namePrd.getText());
-        p.setFabricante((String) cb_fabricante.getSelectedItem());
-        p.setTipo((String) cb_tipo.getSelectedItem());
+        
+        
+        int unidades = Integer.parseInt(js_unidadesProd.getValue().toString());
+        
+        String fabri[] = cb_farmsAgregar.getSelectedItem().toString().split("-");
+        String farma[] = cb_farmsAgregar.getSelectedItem().toString().split("-");
+        
+        
+        String id_farmacia = farma[0];
+        p.setFabricante(fabri[0]);
+        p.setTipo(tf_tipoMed.getText());
         p.setP_coste(Double.parseDouble(ftf_pCoste.getText()));
         p.setP_venta(Double.parseDouble(ftf_pVenta.getText()));
-        p.setId("P" + UUID.randomUUID().toString());
+        p.setId("P" + generateID());
         if (rb_si.isSelected()) {
             p.setS_s(true);
             productos.add(p);
-            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), p.getUnidades(), p.isS_s());
+            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), unidades, p.isS_s(), id_farmacia);
             JD_AgregarProducto.dispose();
             this.setVisible(true);
         } else if (rb_no.isSelected()) {
             p.setS_s(false);
-            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), p.getUnidades(), p.isS_s());
             productos.add(p);
+            con.insertProduct(p.getId(), p.getName(), p.getFabricante(), p.getTipo(), p.getOwner_id(), (int) p.getP_coste(), (int) p.getP_venta(), unidades, p.isS_s(), id_farmacia);
             JD_AgregarProducto.dispose();
             this.setVisible(true);
             
         } else {
             JOptionPane.showMessageDialog(JD_AgregarProducto, "Tiene que seleccionar si esta protegido o no", "Seleccion Invalida", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
+        
     }//GEN-LAST:event_bt_agregarMouseClicked
 
     private void bt_crearFarmacia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearFarmacia1MouseClicked
@@ -1425,6 +1467,7 @@ public class LOG_IN extends javax.swing.JFrame {
         String address = tf_direccionLab.getText();
         String infocont  = ftf_infoCntc.getText();
         String nameLab = tf_nameLab.getText();
+        
         
         //Laboratorio l = new Laboratorio();
         //l.setId("L" + UUID.randomUUID().toString());
@@ -1488,6 +1531,9 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_logIn1MouseClicked
 
     private void bt_farmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_farmaciaMouseClicked
+        //Popular JTable Farmacias
+        
+        con.llenarJTableFarmacias(JT_InfoFarmacias);
         this.setVisible(false);
         AbrirVentana(JD_InfoFarmacias);
     }//GEN-LAST:event_bt_farmaciaMouseClicked
@@ -1502,6 +1548,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_logInMouseClicked
 
     private void btn_RealizarCompra1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RealizarCompra1MouseClicked
+        con.cargarProductosEnTabla(JT_ComprarProducto);
         this.setVisible(false);
         AbrirVentana(JD_RealizarCompra);
     }//GEN-LAST:event_btn_RealizarCompra1MouseClicked
@@ -1521,8 +1568,15 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirCompraMouseClicked
 
     private void btn_AgregarMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMedicamentoMouseClicked
+        
+        
+        //LLenar cbs de labs y farmacia
+        con.poblarComboBoxFarmacia(cb_farmsAgregar);
+        con.poblarComboBoxLaboratorio(cb_labsAgregar);
+        
         JD_Lab.dispose();
         AbrirVentana(JD_AgregarProducto);
+        
         // Codigo Prueba para la base de datos
         //con.insertPerson("250", "Rodrigo", "Vasquez", 19);
     }//GEN-LAST:event_btn_AgregarMedicamentoMouseClicked
@@ -1565,6 +1619,47 @@ public class LOG_IN extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_btn_salirCrearLabMouseClicked
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        con.cargarProductosEnTabla(JT_Inventario);
+        
+        JD_InfoFarmacias.dispose();
+        AbrirVentana(JD_Inventory);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        //Generar un ID aleatorio para el pedido actual
+        if ("".equals(PedidoActual)){
+            PedidoActual = "R" + generateID();
+        }
+        
+        int selectedRow = JT_ComprarProducto.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto de la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String idProducto = JT_ComprarProducto.getValueAt(selectedRow, 0).toString();
+        String fabricante = JT_ComprarProducto.getValueAt(selectedRow, 1).toString();
+        String familia = JT_ComprarProducto.getValueAt(selectedRow, 2).toString();
+        String idFarmacia = JT_ComprarProducto.getValueAt(selectedRow, 3).toString();
+        String nombreProducto = JT_ComprarProducto.getValueAt(selectedRow, 4).toString();
+        String precioCoste = JT_ComprarProducto.getValueAt(selectedRow, 5).toString();
+        String precioVenta = JT_ComprarProducto.getValueAt(selectedRow, 6).toString();
+        String subvencionado = JT_ComprarProducto.getValueAt(selectedRow, 7).toString();
+        String unidades = JT_ComprarProducto.getValueAt(selectedRow, 8).toString();
+        
+        int cantidadSeleccionada = Integer.parseInt(js_Cant_Comprar.getValue().toString());
+        
+        
+        
+
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(this, "Producto agregado al pedido: " + nombreProducto + " (Cantidad: " + cantidadSeleccionada + ")");
+
+       
+    }//GEN-LAST:event_jButton2MouseClicked
+
     private String generateID() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String id = "";
@@ -1574,6 +1669,8 @@ public class LOG_IN extends javax.swing.JFrame {
         }
         return id;
     }
+    
+    
     
     /**
      * @param args the command line arguments
@@ -1656,9 +1753,9 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton btn_salirCrearLab;
     private javax.swing.JButton btn_salirInfoFarmacias;
     private javax.swing.JButton btn_salirRegFarmacia;
-    private javax.swing.JComboBox<String> cb_fabricante;
+    private javax.swing.JComboBox<String> cb_farmsAgregar;
+    private javax.swing.JComboBox<String> cb_labsAgregar;
     private javax.swing.JComboBox<String> cb_ownerFarm;
-    private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ftf_infoCntc;
     private javax.swing.JFormattedTextField ftf_pCoste;
     private javax.swing.JFormattedTextField ftf_pVenta;
@@ -1702,7 +1799,9 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1729,10 +1828,11 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel jl_SalirInventario;
     private javax.swing.JPanel jp_SalirInventario;
+    private javax.swing.JSpinner js_Cant_Comprar;
+    private javax.swing.JSpinner js_unidadesProd;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_si;
     private javax.swing.JTextField tf_direccion;
@@ -1742,5 +1842,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nameLab;
     private javax.swing.JTextField tf_nameLogIn;
     private javax.swing.JTextField tf_namePrd;
+    private javax.swing.JTextField tf_tipoMed;
     // End of variables declaration//GEN-END:variables
 }
