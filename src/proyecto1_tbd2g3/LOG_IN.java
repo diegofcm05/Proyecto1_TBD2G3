@@ -315,10 +315,7 @@ public class LOG_IN extends javax.swing.JFrame {
             .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
                 .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(jLabel31))
-                    .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
-                        .addGap(174, 174, 174)
+                        .addGap(203, 203, 203)
                         .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30)
@@ -336,15 +333,18 @@ public class LOG_IN extends javax.swing.JFrame {
                                 .addComponent(rb_si)
                                 .addGap(18, 18, 18)
                                 .addComponent(rb_no))
-                            .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(160, Short.MAX_VALUE))
+                            .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel31)))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         JD_AgregarProductoLayout.setVerticalGroup(
             JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,7 +372,7 @@ public class LOG_IN extends javax.swing.JFrame {
                     .addComponent(rb_no))
                 .addGap(18, 18, 18)
                 .addComponent(bt_agregar)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         JD_RealizarCompra.setTitle("Comprar Producto - Farmacias DJHR");
