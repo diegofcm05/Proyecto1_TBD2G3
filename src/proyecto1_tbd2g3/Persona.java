@@ -9,24 +9,23 @@ package proyecto1_tbd2g3;
  * @author dfcm9
  */
 public class Persona {
-    private int id;
-    private String first_n, last_n, info_cntc;    
+    private String id, first_n, last_n, info_cntc;    
 
     public Persona() {
     }
 
-    public Persona(int id, String first_n, String last_n, String info_cntc) {
+    public Persona(String id, String first_n, String last_n, String info_cntc) {
         this.id = id;
         this.first_n = first_n;
         this.last_n = last_n;
         this.info_cntc = info_cntc;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

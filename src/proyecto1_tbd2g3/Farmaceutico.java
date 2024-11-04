@@ -13,7 +13,7 @@ public class Farmaceutico extends Persona {
     public Farmaceutico() {
     }
 
-    public Farmaceutico(int id, String first_n, String last_n, String info_cntc) {
+    public Farmaceutico(String id, String first_n, String last_n, String info_cntc) {
         super(id, first_n, last_n, info_cntc);
     }
 

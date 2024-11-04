@@ -5,7 +5,12 @@
 package proyecto1_tbd2g3;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,10 +21,22 @@ public class LOG_IN extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    ArrayList<Producto> productos = new ArrayList();
+    ArrayList<Laboratorio> laboratorios = new ArrayList();
+    ArrayList<Farmacia> farmacias = new ArrayList();
+    ArrayList<Cliente> clientes = new ArrayList();
+    Cliente admin = new Cliente(0, "admin");
+    boolean adminFlag = false;
+    boolean userFlag = false;
+
     public LOG_IN() {
         initComponents();
+        bt_crearFarmacia.setEnabled(false);
+        bt_crearCliente.setEnabled(false);
+        bt_crearLab.setEnabled(false);
     }
     Color fondo;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +84,22 @@ public class LOG_IN extends javax.swing.JFrame {
         jPanel22 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        JD_AgregarProducto = new javax.swing.JDialog();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        tf_namePrd = new javax.swing.JTextField();
+        cb_tipo = new javax.swing.JComboBox<>();
+        cb_fabricante = new javax.swing.JComboBox<>();
+        ftf_pCoste = new javax.swing.JFormattedTextField();
+        ftf_pVenta = new javax.swing.JFormattedTextField();
+        rb_si = new javax.swing.JRadioButton();
+        rb_no = new javax.swing.JRadioButton();
+        bt_agregar = new javax.swing.JButton();
         JD_RealizarCompra = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -111,13 +144,42 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jp_SalirInventario = new javax.swing.JPanel();
         jl_SalirInventario = new javax.swing.JLabel();
+        JD_CrearFarmacia = new javax.swing.JDialog();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        tf_nameFarmacia = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        tf_direccion = new javax.swing.JTextField();
+        bt_crearFarmacia1 = new javax.swing.JButton();
+        cb_ownerF = new javax.swing.JComboBox<>();
+        jLabel40 = new javax.swing.JLabel();
+        JD_CrearLaboratorio = new javax.swing.JDialog();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        tf_nameLab = new javax.swing.JTextField();
+        jLabel43 = new javax.swing.JLabel();
+        tf_direccionLab = new javax.swing.JTextField();
+        bt_crearLab1 = new javax.swing.JButton();
+        ftf_infoCntc = new javax.swing.JFormattedTextField();
+        jLabel45 = new javax.swing.JLabel();
+        JD_CrearCliente = new javax.swing.JDialog();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        tf_nameCliente = new javax.swing.JTextField();
+        bt_crearCliente1 = new javax.swing.JButton();
+        JD_LogIn = new javax.swing.JDialog();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        tf_nameLogIn = new javax.swing.JTextField();
+        bt_logIn1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        bt_crearFarmacia = new javax.swing.JButton();
+        bt_crearCliente = new javax.swing.JButton();
+        bt_crearLab = new javax.swing.JButton();
+        bt_logIn = new javax.swing.JButton();
+        bt_farmacia = new javax.swing.JButton();
+        bt_cliente = new javax.swing.JButton();
+        bt_cliente1 = new javax.swing.JButton();
 
         jPanel15.setBackground(new java.awt.Color(51, 51, 51));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -553,6 +615,127 @@ public class LOG_IN extends javax.swing.JFrame {
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel31.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel31.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Agregar Producto");
+
+        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel30.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Nombre");
+
+        jLabel32.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel32.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Fabricante");
+
+        jLabel33.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel33.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setText("Tipo");
+
+        jLabel34.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel34.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel34.setText("Precio Coste");
+
+        jLabel36.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel36.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Protegido por Seguridad Social");
+
+        jLabel35.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel35.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel35.setText("Precio Venta");
+
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cb_fabricante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        ftf_pCoste.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        ftf_pVenta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        rb_si.setText("Si");
+
+        rb_no.setText("No");
+
+        bt_agregar.setText("Agregar");
+        bt_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_agregarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JD_AgregarProductoLayout = new javax.swing.GroupLayout(JD_AgregarProducto.getContentPane());
+        JD_AgregarProducto.getContentPane().setLayout(JD_AgregarProductoLayout);
+        JD_AgregarProductoLayout.setHorizontalGroup(
+            JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel31))
+                    .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel32)
+                            .addComponent(cb_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35)
+                            .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(ftf_pVenta, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ftf_pCoste, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cb_tipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel36)
+                            .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                                .addComponent(rb_si)
+                                .addGap(18, 18, 18)
+                                .addComponent(rb_no))
+                            .addComponent(bt_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+        JD_AgregarProductoLayout.setVerticalGroup(
+            JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_AgregarProductoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_namePrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftf_pCoste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftf_pVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JD_AgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_si)
+                    .addComponent(rb_no))
+                .addGap(18, 18, 18)
+                .addComponent(bt_agregar)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -943,85 +1126,307 @@ public class LOG_IN extends javax.swing.JFrame {
             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
+        jLabel37.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel37.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("Crear Farmacia");
+
+        jLabel38.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel38.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel38.setText("Nombre");
+
+        jLabel39.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel39.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("Direccion");
+
+        bt_crearFarmacia1.setText("Crear Farmacia");
+        bt_crearFarmacia1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearFarmacia1MouseClicked(evt);
+            }
+        });
+
+        cb_ownerF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel40.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel40.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setText("Dueño");
+
+        javax.swing.GroupLayout JD_CrearFarmaciaLayout = new javax.swing.GroupLayout(JD_CrearFarmacia.getContentPane());
+        JD_CrearFarmacia.getContentPane().setLayout(JD_CrearFarmaciaLayout);
+        JD_CrearFarmaciaLayout.setHorizontalGroup(
+            JD_CrearFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearFarmaciaLayout.createSequentialGroup()
+                .addGroup(JD_CrearFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JD_CrearFarmaciaLayout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addGroup(JD_CrearFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addGroup(JD_CrearFarmaciaLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(JD_CrearFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_nameFarmacia, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(jLabel38)
+                                    .addComponent(tf_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(jLabel39)
+                                    .addComponent(jLabel40)
+                                    .addComponent(cb_ownerF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(JD_CrearFarmaciaLayout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(bt_crearFarmacia1)))
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+        JD_CrearFarmaciaLayout.setVerticalGroup(
+            JD_CrearFarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearFarmaciaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_nameFarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_ownerF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_crearFarmacia1)
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        jLabel41.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel41.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel41.setText("Crear Laboratorio");
+
+        jLabel42.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel42.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setText("Nombre");
+
+        jLabel43.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel43.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel43.setText("Direccion");
+
+        bt_crearLab1.setText("Crear Laboratorio");
+        bt_crearLab1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearLab1MouseClicked(evt);
+            }
+        });
+
+        try {
+            ftf_infoCntc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel45.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel45.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel45.setText("Informacion de Contacto");
+
+        javax.swing.GroupLayout JD_CrearLaboratorioLayout = new javax.swing.GroupLayout(JD_CrearLaboratorio.getContentPane());
+        JD_CrearLaboratorio.getContentPane().setLayout(JD_CrearLaboratorioLayout);
+        JD_CrearLaboratorioLayout.setHorizontalGroup(
+            JD_CrearLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearLaboratorioLayout.createSequentialGroup()
+                .addGroup(JD_CrearLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JD_CrearLaboratorioLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabel41))
+                    .addGroup(JD_CrearLaboratorioLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addGroup(JD_CrearLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bt_crearLab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel45)
+                            .addComponent(tf_nameLab, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(jLabel42)
+                            .addComponent(tf_direccionLab)
+                            .addComponent(jLabel43)
+                            .addComponent(ftf_infoCntc))))
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+        JD_CrearLaboratorioLayout.setVerticalGroup(
+            JD_CrearLaboratorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearLaboratorioLayout.createSequentialGroup()
+                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_nameLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_direccionLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftf_infoCntc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_crearLab1)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        jLabel44.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel44.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel44.setText("Crear Cliente");
+
+        jLabel46.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel46.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel46.setText("Nombre");
+
+        bt_crearCliente1.setText("Crear Cliente");
+        bt_crearCliente1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_crearCliente1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JD_CrearClienteLayout = new javax.swing.GroupLayout(JD_CrearCliente.getContentPane());
+        JD_CrearCliente.getContentPane().setLayout(JD_CrearClienteLayout);
+        JD_CrearClienteLayout.setHorizontalGroup(
+            JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearClienteLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel44)
+                    .addGroup(JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(bt_crearCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_nameCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel46)))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+        JD_CrearClienteLayout.setVerticalGroup(
+            JD_CrearClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_CrearClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_nameCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(bt_crearCliente1)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
+        jLabel47.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel47.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel47.setText("Log In");
+
+        jLabel48.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel48.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Nombre");
+
+        bt_logIn1.setText("Log In");
+        bt_logIn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_logIn1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout JD_LogInLayout = new javax.swing.GroupLayout(JD_LogIn.getContentPane());
+        JD_LogIn.getContentPane().setLayout(JD_LogInLayout);
+        JD_LogInLayout.setHorizontalGroup(
+            JD_LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_LogInLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(JD_LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bt_logIn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_nameLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel48)
+                    .addGroup(JD_LogInLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel47)))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        JD_LogInLayout.setVerticalGroup(
+            JD_LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JD_LogInLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_nameLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(bt_logIn1)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Clientes");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_crearFarmacia.setText("Crear Farmacia");
+        bt_crearFarmacia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                bt_crearFarmaciaMouseClicked(evt);
             }
         });
+        jPanel1.add(bt_crearFarmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 120, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 40));
-
-        jPanel17.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel11.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Labs");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_crearCliente.setText("Crear Cliente");
+        bt_crearCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                bt_crearClienteMouseClicked(evt);
             }
         });
+        jPanel1.add(bt_crearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 120, -1));
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 40));
-
-        jPanel18.setBackground(new java.awt.Color(0, 102, 0));
-
-        jLabel12.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Admin");
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_crearLab.setText("Crear Laboratorio");
+        bt_crearLab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+                bt_crearLabMouseClicked(evt);
             }
         });
+        jPanel1.add(bt_crearLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
+        bt_logIn.setText("Log In");
+        bt_logIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_logInMouseClicked(evt);
+            }
+        });
+        jPanel1.add(bt_logIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
 
-        jPanel1.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 40));
+        bt_farmacia.setText("Farmacia");
+        bt_farmacia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_farmaciaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(bt_farmacia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 120, -1));
+
+        bt_cliente.setText("Clientes");
+        bt_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_clienteMouseClicked(evt);
+            }
+        });
+        jPanel1.add(bt_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 120, -1));
+
+        bt_cliente1.setText("Laboratorios");
+        bt_cliente1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_cliente1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(bt_cliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1031,26 +1436,11 @@ public class LOG_IN extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        this.setVisible(false);
-        AbrirVentana(JD_AdminFarmacia);
-    }//GEN-LAST:event_jLabel12MouseClicked
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        this.setVisible(false);
-        AbrirVentana(JD_VistaCliente);
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        this.setVisible(false);
-        AbrirVentana(JD_Lab);
-    }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jl_SalirVistaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaClienteMouseClicked
         JD_VistaCliente.dispose();
@@ -1068,7 +1458,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirVistaLabMouseClicked
 
     private void jl_SalirVistaLabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaLabMouseEntered
-        fondo=jp_SalirVistaLab.getBackground();
+        fondo = jp_SalirVistaLab.getBackground();
         jp_SalirVistaLab.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirVistaLabMouseEntered
 
@@ -1078,7 +1468,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirVistaLabMouseExited
 
     private void jl_SalirVistaClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaClienteMouseEntered
-        fondo=jp_SalirVistaCliente.getBackground();
+        fondo = jp_SalirVistaCliente.getBackground();
         jp_SalirVistaCliente.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirVistaClienteMouseEntered
 
@@ -1087,7 +1477,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirVistaClienteMouseExited
 
     private void jl_SalirVistaAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirVistaAdminMouseEntered
-        fondo=jp_SalirVistaAdmin.getBackground();
+        fondo = jp_SalirVistaAdmin.getBackground();
         jp_SalirVistaAdmin.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirVistaAdminMouseEntered
 
@@ -1101,7 +1491,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirComprasMouseClicked
 
     private void jl_SalirComprasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirComprasMouseEntered
-        fondo=jp_SalirCompras.getBackground();
+        fondo = jp_SalirCompras.getBackground();
         jp_SalirCompras.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirComprasMouseEntered
 
@@ -1110,12 +1500,12 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirComprasMouseExited
 
     private void jl_SalirReabastecimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirReabastecimientoMouseClicked
-       JD_Reabastecimiento.dispose();
+        JD_Reabastecimiento.dispose();
         AbrirVentana(JD_AdminFarmacia);
     }//GEN-LAST:event_jl_SalirReabastecimientoMouseClicked
 
     private void jl_SalirReabastecimientoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirReabastecimientoMouseEntered
-        fondo=jp_SalirReabastecimiento.getBackground();
+        fondo = jp_SalirReabastecimiento.getBackground();
         jp_SalirReabastecimiento.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirReabastecimientoMouseEntered
 
@@ -1139,7 +1529,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirInfoFarmaciasMouseClicked
 
     private void jl_SalirInfoFarmaciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInfoFarmaciasMouseEntered
-        fondo=jp_SalirInfoFarmacias.getBackground();
+        fondo = jp_SalirInfoFarmacias.getBackground();
         jp_SalirInfoFarmacias.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirInfoFarmaciasMouseEntered
 
@@ -1153,7 +1543,7 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_SalirInventarioMouseClicked
 
     private void jl_SalirInventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_SalirInventarioMouseEntered
-        fondo=jp_SalirInventario.getBackground();
+        fondo = jp_SalirInventario.getBackground();
         jp_SalirInventario.setBackground(Color.red);
     }//GEN-LAST:event_jl_SalirInventarioMouseEntered
 
@@ -1176,8 +1566,124 @@ public class LOG_IN extends javax.swing.JFrame {
         ConexionDB con = new ConexionDB();
         con.Conectar();
         con.insertPerson("200", "Diego", "Lara", 32);
-        
+
     }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void bt_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_agregarMouseClicked
+        Producto p = new Producto();
+        p.setName(tf_namePrd.getText());
+        p.setFabricante((String) cb_fabricante.getSelectedItem());
+        p.setTipo((String) cb_tipo.getSelectedItem());
+        p.setP_coste(Double.parseDouble(ftf_pCoste.getText()));
+        p.setP_venta(Double.parseDouble(ftf_pVenta.getText()));
+        p.setId("P" + UUID.randomUUID().toString());
+        if (rb_si.isSelected()) {
+            p.setS_s(true);
+            productos.add(p);
+            JD_AgregarProducto.dispose();
+            this.setVisible(true);
+        } else if (rb_no.isSelected()) {
+            p.setS_s(false);
+            productos.add(p);
+            JD_AgregarProducto.dispose();
+            this.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(JD_AgregarProducto, "Tiene que seleccionar si esta protegido o no", "Seleccion Invalida", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bt_agregarMouseClicked
+
+    private void bt_crearFarmacia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearFarmacia1MouseClicked
+        Farmacia f = new Farmacia();
+        f.setId("F" + UUID.randomUUID().toString());
+        f.setName(tf_nameFarmacia.getText());
+        f.setAddress(tf_direccion.getText());
+        f.setOwner((Farmaceutico) cb_ownerF.getSelectedItem());
+        tf_nameFarmacia.setText("");
+        tf_direccion.setText("");
+        farmacias.add(f);
+        JD_CrearFarmacia.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_bt_crearFarmacia1MouseClicked
+
+    private void bt_crearFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearFarmaciaMouseClicked
+        AbrirVentana(JD_CrearFarmacia);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_crearFarmaciaMouseClicked
+
+    private void bt_crearLab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearLab1MouseClicked
+        Laboratorio l = new Laboratorio();
+        l.setId("L" + UUID.randomUUID().toString());
+        l.setAddress(tf_direccionLab.getText());
+        l.setInfo_cntc(ftf_infoCntc.getText());
+        l.setName(tf_nameLab.getText());
+        tf_direccionLab.setText("");
+        ftf_infoCntc.setText("");
+        tf_nameLab.setText("");
+        laboratorios.add(l);
+        JD_CrearLaboratorio.dispose();
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_crearLab1MouseClicked
+
+    private void bt_crearCliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearCliente1MouseClicked
+        Cliente c = new Cliente();
+        c.setId(Integer.parseInt(UUID.randomUUID().toString()));
+        c.setUser(tf_nameCliente.getText());
+        tf_nameCliente.setText("");
+        tf_direccionLab.setText("");
+        ftf_infoCntc.setText("");
+        clientes.add(c);
+        JD_CrearCliente.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_bt_crearCliente1MouseClicked
+
+    private void bt_crearClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearClienteMouseClicked
+        AbrirVentana(JD_CrearCliente);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_crearClienteMouseClicked
+
+    private void bt_crearLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearLabMouseClicked
+        AbrirVentana(JD_CrearLaboratorio);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_crearLabMouseClicked
+
+    private void bt_logIn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_logIn1MouseClicked
+        if (!tf_nameLogIn.getText().isBlank()) {
+            for (Cliente cliente : clientes) {
+                if (tf_nameLogIn.getText().equals(cliente.getUser())) {
+                    userFlag = true;
+                    if (tf_nameLogIn.getText().equals("admin")) {
+                        adminFlag = true;
+                        bt_crearFarmacia.setEnabled(true);
+                        bt_crearCliente.setEnabled(true);
+                        bt_crearLab.setEnabled(true);
+                    }
+                }
+            }
+            tf_nameLogIn.setText("");
+            JD_LogIn.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de Usuario", "WRONG_USER", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bt_logIn1MouseClicked
+
+    private void bt_farmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_farmaciaMouseClicked
+        this.setVisible(false);
+        AbrirVentana(JD_AdminFarmacia);
+    }//GEN-LAST:event_bt_farmaciaMouseClicked
+
+    private void bt_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clienteMouseClicked
+        this.setVisible(false);
+        AbrirVentana(JD_VistaCliente);
+    }//GEN-LAST:event_bt_clienteMouseClicked
+
+    private void bt_cliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cliente1MouseClicked
+        this.setVisible(false);
+        AbrirVentana(JD_Lab);
+    }//GEN-LAST:event_bt_cliente1MouseClicked
+
+    private void bt_logInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_logInMouseClicked
+        AbrirVentana(JD_LogIn);
+    }//GEN-LAST:event_bt_logInMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1214,8 +1720,7 @@ public class LOG_IN extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     public void AbrirVentana(JDialog ventana) {
         ventana.pack();
         ventana.setModal(false);
@@ -1224,9 +1729,14 @@ public class LOG_IN extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog JD_AdminFarmacia;
+    private javax.swing.JDialog JD_AgregarProducto;
+    private javax.swing.JDialog JD_CrearCliente;
+    private javax.swing.JDialog JD_CrearFarmacia;
+    private javax.swing.JDialog JD_CrearLaboratorio;
     private javax.swing.JDialog JD_InfoFarmacias;
     private javax.swing.JDialog JD_Inventory;
     private javax.swing.JDialog JD_Lab;
+    private javax.swing.JDialog JD_LogIn;
     private javax.swing.JDialog JD_Reabastecimiento;
     private javax.swing.JDialog JD_RealizarCompra;
     private javax.swing.JDialog JD_VistaCliente;
@@ -1238,9 +1748,24 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JTable JT_InfoFarmacias;
     private javax.swing.JTable JT_Inventario;
     private javax.swing.JTable JT_Reabastecimiento;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JButton bt_agregar;
+    private javax.swing.JButton bt_cliente;
+    private javax.swing.JButton bt_cliente1;
+    private javax.swing.JButton bt_crearCliente;
+    private javax.swing.JButton bt_crearCliente1;
+    private javax.swing.JButton bt_crearFarmacia;
+    private javax.swing.JButton bt_crearFarmacia1;
+    private javax.swing.JButton bt_crearLab;
+    private javax.swing.JButton bt_crearLab1;
+    private javax.swing.JButton bt_farmacia;
+    private javax.swing.JButton bt_logIn;
+    private javax.swing.JButton bt_logIn1;
+    private javax.swing.JComboBox<String> cb_fabricante;
+    private javax.swing.JComboBox<String> cb_ownerF;
+    private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JFormattedTextField ftf_infoCntc;
+    private javax.swing.JFormattedTextField ftf_pCoste;
+    private javax.swing.JFormattedTextField ftf_pVenta;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1258,7 +1783,26 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1267,8 +1811,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
@@ -1278,7 +1820,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1312,5 +1853,14 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JPanel jp_SalirVistaAdmin;
     private javax.swing.JPanel jp_SalirVistaCliente;
     private javax.swing.JPanel jp_SalirVistaLab;
+    private javax.swing.JRadioButton rb_no;
+    private javax.swing.JRadioButton rb_si;
+    private javax.swing.JTextField tf_direccion;
+    private javax.swing.JTextField tf_direccionLab;
+    private javax.swing.JTextField tf_nameCliente;
+    private javax.swing.JTextField tf_nameFarmacia;
+    private javax.swing.JTextField tf_nameLab;
+    private javax.swing.JTextField tf_nameLogIn;
+    private javax.swing.JTextField tf_namePrd;
     // End of variables declaration//GEN-END:variables
 }

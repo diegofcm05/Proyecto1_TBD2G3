@@ -13,7 +13,7 @@ public class Propietario extends Persona{
     public Propietario() {
     }
 
-    public Propietario(int id, String first_n, String last_n, String info_cntc) {
+    public Propietario(String id, String first_n, String last_n, String info_cntc) {
         super(id, first_n, last_n, info_cntc);
     }
     

@@ -9,22 +9,24 @@ package proyecto1_tbd2g3;
  * @author dfcm9
  */
 public class Farmacia {
-    private int id;
-    private String address;
+    private String id, address, name;
+    private Farmaceutico owner;
 
     public Farmacia() {
     }
 
-    public Farmacia(int id, String address) {
+    public Farmacia(String id, String address, String name, Farmaceutico owner) {
         this.id = id;
         this.address = address;
+        this.name = name;
+        this.owner = owner;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,6 +36,22 @@ public class Farmacia {
 
     public void setAddress(String address) {
         this.address = address; 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Farmaceutico getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Farmaceutico owner) {
+        this.owner = owner;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }
