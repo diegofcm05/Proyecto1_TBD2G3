@@ -34,7 +34,7 @@ public class LOG_IN extends javax.swing.JFrame {
     boolean userFlag = false;
     ConexionDB con = new ConexionDB();
     Random sr = new Random();
-    String PedidoActual;
+    String PedidoActual = "";
 
     public LOG_IN() {
         initComponents();
@@ -96,7 +96,7 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         btn_SalirCompra = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_FinalizarPedido = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -524,13 +524,18 @@ public class LOG_IN extends javax.swing.JFrame {
         });
         jPanel2.add(btn_SalirCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, 140, 40));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Finalizar Pedido");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton1.setFocusable(false);
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 170, 40));
+        btn_FinalizarPedido.setBackground(new java.awt.Color(51, 51, 51));
+        btn_FinalizarPedido.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btn_FinalizarPedido.setForeground(new java.awt.Color(255, 255, 255));
+        btn_FinalizarPedido.setText("Finalizar Pedido");
+        btn_FinalizarPedido.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_FinalizarPedido.setFocusable(false);
+        btn_FinalizarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_FinalizarPedidoMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btn_FinalizarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 170, 40));
 
         jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
@@ -1628,9 +1633,7 @@ public class LOG_IN extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         //Generar un ID aleatorio para el pedido actual
-        if ("".equals(PedidoActual)){
-            PedidoActual = "R" + generateID();
-        }
+        
         
         int selectedRow = JT_ComprarProducto.getSelectedRow();
 
@@ -1649,16 +1652,26 @@ public class LOG_IN extends javax.swing.JFrame {
         String subvencionado = JT_ComprarProducto.getValueAt(selectedRow, 7).toString();
         String unidades = JT_ComprarProducto.getValueAt(selectedRow, 8).toString();
         
+        if ("".equals(PedidoActual)){
+            PedidoActual = "R" + generateID();
+            con.insertPedido(PedidoActual, idFarmacia, 540);
+        }
+        
         int cantidadSeleccionada = Integer.parseInt(js_Cant_Comprar.getValue().toString());
-        
-        
-        
-
+        con.insertDetallePedido(PedidoActual, idProducto, cantidadSeleccionada, Integer.parseInt(precioVenta));
+        System.out.println("ID PEDIDO ACTUAL: " + PedidoActual);
         // Mostrar mensaje de confirmación
         JOptionPane.showMessageDialog(this, "Producto agregado al pedido: " + nombreProducto + " (Cantidad: " + cantidadSeleccionada + ")");
 
        
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void btn_FinalizarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FinalizarPedidoMouseClicked
+        con.finalizarPedido(PedidoActual);
+        PedidoActual = "";
+        JD_RealizarCompra.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_FinalizarPedidoMouseClicked
 
     private String generateID() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -1745,6 +1758,7 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton bt_logIn;
     private javax.swing.JButton bt_logIn1;
     private javax.swing.JButton btn_AgregarMedicamento;
+    private javax.swing.JButton btn_FinalizarPedido;
     private javax.swing.JButton btn_RealizarCompra1;
     private javax.swing.JButton btn_SalirCompra;
     private javax.swing.JButton btn_SalirMenuLabs;
@@ -1759,7 +1773,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ftf_infoCntc;
     private javax.swing.JFormattedTextField ftf_pCoste;
     private javax.swing.JFormattedTextField ftf_pVenta;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
