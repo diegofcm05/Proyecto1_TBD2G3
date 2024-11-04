@@ -9,15 +9,16 @@ package proyecto1_tbd2g3;
  * @author dfcm9
  */
 public class Producto {
-    private int id, unidades;
-    private String name, fabricante, tipo;
+    private int unidades;
+    private String  id, name, fabricante, tipo;
     private double p_coste, p_venta;
     private boolean s_s;
+    private String owner_id;
 
     public Producto() {
     }
 
-    public Producto(int id, int unidades, String name, String fabricante, String tipo, double p_coste, double p_venta, boolean s_s) {
+    public Producto(String id, int unidades, String name, String fabricante, String tipo, double p_coste, double p_venta, boolean s_s, String owner_id) {
         this.id = id;
         this.unidades = unidades;
         this.name = name;
@@ -26,13 +27,14 @@ public class Producto {
         this.p_coste = p_coste;
         this.p_venta = p_venta;
         this.s_s = s_s;
+        this.owner_id = owner_id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -90,6 +92,14 @@ public class Producto {
 
     public void setS_s(boolean s_s) {
         this.s_s = s_s;
+    }
+
+    public String getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(String owner_id) {
+        this.owner_id = owner_id;
     }
     
     
