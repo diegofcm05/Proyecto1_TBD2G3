@@ -11,9 +11,14 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
 import java.io.IOException;
 import net.spy.memcached.MemcachedClient;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.JOptionPane;
 import net.spy.memcached.AddrUtil;
 import net.spy.memcached.DefaultConnectionFactory;
 
@@ -26,12 +31,15 @@ public class ConexionDB {
     private static AmazonDynamoDB client;
     private static DynamoDB dynamoDB;
     private static String tableName = "Persona";
+    private static String tableNameFarmacia = "Farmacia";
+    private static String tableNameFarmaceutico = "Farmaceutico";
+    private static String tableNamePropietario = "Propietario";
 
     // Establecer las credenciales de AWS
-    private String accessKey = "ASIA6ODU5YVH7YBRYVJQ"; // Reemplaza con tu Access Key ID
-    private String secretKey = "qNH32h+OoRjn++mqiDrP0faB7d9Sg+IUMULiPFQT"; // Reemplaza con tu Secret Access Key
-    private String sessionToken = "IQoJb3JpZ2luX2VjEG8aCXVzLXdlc3QtMiJGMEQCIGFPbPzxJJCzTcHbZ6NIOMBkqsfteHr1MckoCQwtAAb9AiAska3MSYr+0tITdjW9g1B0djKqXdbA2W4gRdavShM44Sq9Agjo//////////8BEAAaDDk5MjM4MjY2NjA2MyIM42uJAF7Fi6EczaalKpECwvwZobZD3OLy1ODeLWlabjhiUq+52nqGZik6GsvyaNSZ8VJaDUA0EBmcX/coHEzoT0mnYMLUUAPADa5Lfxumzt3EV19oAVXiz3YyPHrqb2ohGsTwouNdkHA6DtDqCMHeLUqRfx2up9Io4+S00nHaRgi6GMMGd2jeOZDaNYonJNnHDytCOzVtvsFhjeHP8wI2rwcitZqM0etFwleMFWy/jf5jC2IpQS9dPsZhYfCFL0dzbMNdLn6aVM+MIlE8VF02l5nrcdoAzKKxbf03v1qhWpdsBYA1MOBVYXh6tYigZVIFUYwofwajWcm3YGDD3WsDJnKdrV64O3wsZgfaMdcQqawjigYEIkRee9fXbObiD0RBMJzhobkGOp4BY+36TJDE+Fqp3Gy0Ok+gqFCTO+puTOrUyP2DVmrXqcnl+60JWj6I4DkRcPy5tWLO3yz4CNNCBstDJP4tz+8tcCn8DjhEGsd/sbXvXQ86p9IQLdcivMDaVlpkzLZBYMGpoWSKs8EZ6OCeVLD86dKViHnFmXJfWaySA1D/xlYgYFT3lk0vENCYVdeFen1sRPym9hrWoAPcu+LYWpXawpE=";
-
+    private String accessKey = "ASIA6ODU5YVHVVVKUQS6"; // Reemplaza con tu Access Key ID
+    private String secretKey = "GoXI+IeBDK0J+DOwUFb0vsG+d8UDl4lA6pil1znN"; // Reemplaza con tu Secret Access Key
+    private String sessionToken = "IQoJb3JpZ2luX2VjEHoaCXVzLXdlc3QtMiJHMEUCIChTManmnM1UnZjq+Ks0LQSZj1oLCsz6hui/8xDn74TeAiEAjLkVdufazcKv7ikLpXi0NbH9sJGP+Bt65QwD9eh4SXgqvQII8v//////////ARAAGgw5OTIzODI2NjYwNjMiDFWmv2UuCqR0k4U9siqRAj4IJ8M7mzjt6BCjiyuv7ECyh/pmaS8BO6/jLQ/CWSwWpN1lyzKFANn7NusDovmiHmv+j7KhoEFOgA0O3P9jXT0puKIyqKuocuk55+k0K7UhS1AEx4lRaDMxUswIlWsrdPpIdKtnlbE22DWgd9GYorUzsQMc8xkafqi+cUfYvYxDX4boX51AiPUg1ttmDhu7q9HutqU7mLz6zhIN8jBOpuUOieqaqshfEazqzMLLfoFbHFPgBybPa0bOdBHVuAtCgQ3mi1SYmeWql7UoKnGE5mQpR9w+9q5OGyby23mgfsAjEQUUq2LQkmktfMe7xrOpkx2gxzVtgflNbB9aFXFlP+gW7MusN/KcqpLOY/osxvcjvzDqg6S5BjqdAZbFSCrE0Md61ANIPOO8tgXkjlrnK990vIjVgF9sSqcrVFf56opcTT2ket+9Q2/7xqV6ABGgUbQL3TwKZfhkwI7m/pYWQLjdCAzIiwd91sNvshwinWSt5bH65/fg3AbLYmCj8i2WASvk6JiyLrguSRginRF5TfL2VMgl0YTmrDcQ1u07GSrESUeGOx+HEt+Ncjq2Pfq7nx3wXMDtHXk=";
+    
     public void Conectar() {
         // Crear las credenciales con el token de sesión
         BasicSessionCredentials awsCreds = new BasicSessionCredentials(accessKey, secretKey, sessionToken);
@@ -68,10 +76,10 @@ public class ConexionDB {
         }
     }
 
-    public void insertFarmacia(String id, String nombre, String direccion, String propietario_id, String nombre_propietario) {
+    public void insertFarmacia(String id, String nombre, String direccion, String propietario_id) {
         try {
             // Obtener la tabla
-            Table table = dynamoDB.getTable(tableName);
+            Table table = dynamoDB.getTable(tableNameFarmacia);
 
             // Crear un nuevo ítem
             Item item = new Item()
@@ -89,12 +97,13 @@ public class ConexionDB {
         }
     }
 
-    public void insertLaboratorio(String id_lab, String dir, String contact) {
+    public void insertLaboratorio(String id_lab, String dir, String contact, String namel) {
         try {
-            Table table = dynamoDB.getTable(tableName);
-            Item item = new Item().withPrimaryKey("id_laboratorio", id_lab).withString("Direccion", dir).withString("Contacto", contact);
+            Table table = dynamoDB.getTable("Laboratorio");
+            Item item = new Item().withPrimaryKey("id_laboratorio", id_lab).withString("Direccion", dir).withString("Contacto", contact).withString("Nombre", namel);
             table.putItem(item);
             System.out.println("Laboratorio insertado correctamente");
+            JOptionPane.showMessageDialog(null, "Laboratorio insertado correctamente");
         } catch (Exception e) {
             System.out.println("Error al insertar el laboratorio");
         }
@@ -138,10 +147,11 @@ public class ConexionDB {
     
     public void insertCliente(String id_cliente, String nom){
 	try {
-		Table table = dynamoDB.getTable(tableName);
+		Table table = dynamoDB.getTable("Cliente");
 		Item item = new Item().withPrimaryKey("id_cliente", id_cliente).withString("Nombre", nom);
 		table.putItem(item);
 		System.out.print("Cliente insertado exitosamente");
+                JOptionPane.showMessageDialog(null, "Cliente insertado exitosamente.\nSu ID es: " + id_cliente);
 	} catch (Exception e) {
 		System.out.print("Error al insertar el cliente");
 	}
@@ -205,6 +215,43 @@ public class ConexionDB {
         } catch (Exception e) {
             System.out.println("Error al recuperar la persona: " + e.getMessage());
         }
+    }
+    
+    public List<String> obtenerDatosCombinados() {
+        List<String> owners = new ArrayList<>();
+
+        try {
+            // Obtener datos de la tabla Farmaceutico
+            Table tableFarmaceutico = dynamoDB.getTable(tableNameFarmaceutico);
+            ScanSpec scanSpecFarmaceutico = new ScanSpec();
+            Iterator<Item> iteratorFarmaceutico = tableFarmaceutico.scan(scanSpecFarmaceutico).iterator();
+
+            while (iteratorFarmaceutico.hasNext()) {
+                Item item = iteratorFarmaceutico.next();
+                String idFarmaceutico = item.getString("id_farmaceutico");
+                String nombreFarmaceutico = item.getString("Nombre");
+                // Agregar al listado con un formato "ID - Nombre"
+                owners.add(idFarmaceutico + "-" + nombreFarmaceutico + " (Farmaceutico)");
+            }
+
+            // Obtener datos de la tabla Propietario
+            Table tablePropietario = dynamoDB.getTable(tableNamePropietario);
+            ScanSpec scanSpecPropietario = new ScanSpec();
+            Iterator<Item> iteratorPropietario = tablePropietario.scan(scanSpecPropietario).iterator();
+
+            while (iteratorPropietario.hasNext()) {
+                Item item = iteratorPropietario.next();
+                String idPropietario = item.getString("id_propietario");
+                String nombrePropietario = item.getString("Nombre");
+                // Agregar al listado con un formato "ID - Nombre"
+                owners.add(idPropietario + "-" + nombrePropietario + " (Propietario)");
+            }
+
+        } catch (Exception e) {
+            System.out.println("No se pudieron recuperar los datos: " + e.getMessage());
+        }
+
+        return owners;
     }
 
 }

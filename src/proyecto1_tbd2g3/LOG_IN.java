@@ -7,8 +7,11 @@ package proyecto1_tbd2g3;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -29,6 +32,7 @@ public class LOG_IN extends javax.swing.JFrame {
     boolean adminFlag = false;
     boolean userFlag = false;
     ConexionDB con = new ConexionDB();
+    Random sr = new Random();
 
     public LOG_IN() {
         initComponents();
@@ -128,7 +132,7 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         tf_nameFarmacia = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        cb_ownerF = new javax.swing.JComboBox<>();
+        cb_ownerFarm = new javax.swing.JComboBox<>();
         jLabel39 = new javax.swing.JLabel();
         tf_direccion = new javax.swing.JTextField();
         bt_crearFarmacia1 = new javax.swing.JButton();
@@ -142,9 +146,9 @@ public class LOG_IN extends javax.swing.JFrame {
         tf_direccionLab = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         ftf_infoCntc = new javax.swing.JFormattedTextField();
-        bt_crearLab1 = new javax.swing.JButton();
+        bt_crearLaboratorio = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton8 = new javax.swing.JButton();
+        btn_salirCrearLab = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         JD_CrearCliente = new javax.swing.JDialog();
         jPanel8 = new javax.swing.JPanel();
@@ -785,8 +789,6 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Dueño");
 
-        cb_ownerF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel39.setBackground(new java.awt.Color(255, 255, 255));
         jLabel39.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
@@ -831,11 +833,11 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tf_nameFarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_ownerF, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel40))
-                        .addGap(80, 336, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel40)
+                            .addComponent(cb_ownerFarm, 0, 356, Short.MAX_VALUE)
+                            .addComponent(tf_nameFarmacia))
+                        .addGap(89, 149, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -864,7 +866,7 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jLabel40)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cb_ownerF, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_ownerFarm, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -917,22 +919,27 @@ public class LOG_IN extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        bt_crearLab1.setBackground(new java.awt.Color(0, 51, 0));
-        bt_crearLab1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        bt_crearLab1.setForeground(new java.awt.Color(255, 255, 255));
-        bt_crearLab1.setText("Crear Laboratorio");
-        bt_crearLab1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_crearLaboratorio.setBackground(new java.awt.Color(0, 51, 0));
+        bt_crearLaboratorio.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        bt_crearLaboratorio.setForeground(new java.awt.Color(255, 255, 255));
+        bt_crearLaboratorio.setText("Crear Laboratorio");
+        bt_crearLaboratorio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_crearLab1MouseClicked(evt);
+                bt_crearLaboratorioMouseClicked(evt);
             }
         });
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton8.setBackground(new java.awt.Color(153, 0, 0));
-        jButton8.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Salir");
+        btn_salirCrearLab.setBackground(new java.awt.Color(153, 0, 0));
+        btn_salirCrearLab.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btn_salirCrearLab.setForeground(new java.awt.Color(255, 255, 255));
+        btn_salirCrearLab.setText("Salir");
+        btn_salirCrearLab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_salirCrearLabMouseClicked(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -952,9 +959,9 @@ public class LOG_IN extends javax.swing.JFrame {
                             .addGap(12, 12, 12)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(bt_crearLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bt_crearLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_salirCrearLab, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(16, 16, 16))
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -991,8 +998,8 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addComponent(ftf_infoCntc, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_crearLab1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_crearLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_salirCrearLab, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
 
@@ -1016,7 +1023,7 @@ public class LOG_IN extends javax.swing.JFrame {
         jLabel44.setBackground(new java.awt.Color(255, 255, 255));
         jLabel44.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel44.setText("Crear Cliente");
+        jLabel44.setText("Registrar Cliente");
 
         jLabel46.setBackground(new java.awt.Color(255, 255, 255));
         jLabel46.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
@@ -1026,7 +1033,7 @@ public class LOG_IN extends javax.swing.JFrame {
         bt_crearCliente1.setBackground(new java.awt.Color(0, 51, 51));
         bt_crearCliente1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         bt_crearCliente1.setForeground(new java.awt.Color(255, 255, 255));
-        bt_crearCliente1.setText("Crear Cliente");
+        bt_crearCliente1.setText("Registrar");
         bt_crearCliente1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_crearCliente1MouseClicked(evt);
@@ -1159,7 +1166,7 @@ public class LOG_IN extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1183,9 +1190,7 @@ public class LOG_IN extends javax.swing.JFrame {
         JD_LogIn.getContentPane().setLayout(JD_LogInLayout);
         JD_LogInLayout.setHorizontalGroup(
             JD_LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JD_LogInLayout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         JD_LogInLayout.setVerticalGroup(
             JD_LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1368,48 +1373,86 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_agregarMouseClicked
 
     private void bt_crearFarmacia1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearFarmacia1MouseClicked
+        //Agregar validacion de que todo este lleno
+        
+        String id_far = "F" + generateID();
+        String namefar = tf_nameFarmacia.getText();
+        String direccion = tf_direccion.getText();
+        String [] Owner = cb_ownerFarm.getSelectedItem().toString().split("-");
+        String owner_id = Owner[0];
+        
+        
+        
+        con.insertFarmacia(id_far, namefar, direccion, owner_id);
+        
+        
+        /*
         Farmacia f = new Farmacia();
         f.setId("F" + UUID.randomUUID().toString());
         f.setName(tf_nameFarmacia.getText());
         f.setAddress(tf_direccion.getText());
         f.setOwner((Farmaceutico) cb_ownerF.getSelectedItem());
         con.insertFarmacia(f.getId(), f.getName(), f.getAddress(), f.getOwner().getId(), f.getOwner().getFirst_n() + " " + f.getOwner().getLast_n());
+        */
+        
         tf_nameFarmacia.setText("");
         tf_direccion.setText("");
-        farmacias.add(f);
+        //farmacias.add(f);
+        
+        
         JD_CrearFarmacia.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_bt_crearFarmacia1MouseClicked
 
     private void bt_crearFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearFarmaciaMouseClicked
+        cb_ownerFarm.removeAllItems();
+        
+        //Llenar combobox de owners aqui
+        List<String> ownerList = con.obtenerDatosCombinados();
+            for (String owner : ownerList) {
+                cb_ownerFarm.addItem(owner);
+            }
+        
         AbrirVentana(JD_CrearFarmacia);
         this.setVisible(false);
+        
+        
+        
     }//GEN-LAST:event_bt_crearFarmaciaMouseClicked
 
-    private void bt_crearLab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearLab1MouseClicked
-        Laboratorio l = new Laboratorio();
-        l.setId("L" + UUID.randomUUID().toString());
-        l.setAddress(tf_direccionLab.getText());
-        l.setInfo_cntc(ftf_infoCntc.getText());
-        l.setName(tf_nameLab.getText());
-        con.insertLaboratorio(l.getId(), l.getAddress(), l.getInfo_cntc());
+    private void bt_crearLaboratorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearLaboratorioMouseClicked
+        String LabId = "L" + generateID();
+        String address = tf_direccionLab.getText();
+        String infocont  = ftf_infoCntc.getText();
+        String nameLab = tf_nameLab.getText();
+        
+        //Laboratorio l = new Laboratorio();
+        //l.setId("L" + UUID.randomUUID().toString());
+        //l.setAddress(tf_direccionLab.getText());
+        //l.setInfo_cntc(ftf_infoCntc.getText());
+        //l.setName(tf_nameLab.getText());
+        con.insertLaboratorio(LabId, address, infocont, nameLab);
         tf_direccionLab.setText("");
         ftf_infoCntc.setText("");
         tf_nameLab.setText("");
-        laboratorios.add(l);
+        //laboratorios.add(l);
         JD_CrearLaboratorio.dispose();
         this.setVisible(false);
-    }//GEN-LAST:event_bt_crearLab1MouseClicked
+    }//GEN-LAST:event_bt_crearLaboratorioMouseClicked
 
     private void bt_crearCliente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_crearCliente1MouseClicked
-        Cliente c = new Cliente();
-        c.setId(Integer.parseInt(UUID.randomUUID().toString()));
-        c.setUser(tf_nameCliente.getText());
-        con.insertCliente(c.getUser(), c.getUser());
+        
+        
+        String id_cli = "C" + generateID();
+        String namec = tf_nameCliente.getText();
+        //Cliente c = new Cliente();
+        //c.setId(Integer.parseInt(UUID.randomUUID().toString()));
+        //c.setUser(tf_nameCliente.getText());
+        con.insertCliente(id_cli, namec);
         tf_nameCliente.setText("");
-        tf_direccionLab.setText("");
-        ftf_infoCntc.setText("");
-        clientes.add(c);
+        //tf_direccionLab.setText("");
+        //ftf_infoCntc.setText("");
+        //clientes.add(c);
         JD_CrearCliente.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_bt_crearCliente1MouseClicked
@@ -1508,7 +1551,8 @@ public class LOG_IN extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirReabastecimiento1MouseClicked
 
     private void btn_salirRegFarmaciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirRegFarmaciaMouseClicked
-        // TODO add your handling code here:
+        JD_CrearFarmacia.dispose();
+        this.setVisible(true);
     }//GEN-LAST:event_btn_salirRegFarmaciaMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -1516,6 +1560,21 @@ public class LOG_IN extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void btn_salirCrearLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_salirCrearLabMouseClicked
+        JD_CrearLaboratorio.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_salirCrearLabMouseClicked
+
+    private String generateID() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String id = "";
+        for (int i = 0; i < 9; i++) {
+            int index = sr.nextInt(caracteres.length());
+            id += caracteres.charAt(index);
+        }
+        return id;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1584,7 +1643,7 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton bt_crearFarmacia;
     private javax.swing.JButton bt_crearFarmacia1;
     private javax.swing.JButton bt_crearLab;
-    private javax.swing.JButton bt_crearLab1;
+    private javax.swing.JButton bt_crearLaboratorio;
     private javax.swing.JButton bt_farmacia;
     private javax.swing.JButton bt_logIn;
     private javax.swing.JButton bt_logIn1;
@@ -1594,10 +1653,11 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton btn_SalirMenuLabs;
     private javax.swing.JButton btn_SalirReabastecimiento;
     private javax.swing.JButton btn_SalirReabastecimiento1;
+    private javax.swing.JButton btn_salirCrearLab;
     private javax.swing.JButton btn_salirInfoFarmacias;
     private javax.swing.JButton btn_salirRegFarmacia;
     private javax.swing.JComboBox<String> cb_fabricante;
-    private javax.swing.JComboBox<String> cb_ownerF;
+    private javax.swing.JComboBox<String> cb_ownerFarm;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JFormattedTextField ftf_infoCntc;
     private javax.swing.JFormattedTextField ftf_pCoste;
@@ -1609,7 +1669,6 @@ public class LOG_IN extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
