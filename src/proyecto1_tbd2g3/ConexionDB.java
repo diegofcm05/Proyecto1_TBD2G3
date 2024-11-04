@@ -14,6 +14,7 @@ import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.spec.ScanSpec;
+import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import java.io.IOException;
 import net.spy.memcached.MemcachedClient;
 import java.net.InetSocketAddress;
@@ -176,7 +177,7 @@ public class ConexionDB {
     
     public void insertPedido(String id_pedido, String farmaciaID, int total){
 	try {
-		Table table = dynamoDB.getTable(tableName);
+		Table table = dynamoDB.getTable("Pedido");
 		Item item = new Item().withPrimaryKey("id_pedido", id_pedido)
                         .withString("Farmacia", farmaciaID)
                         .withNumber("Total", total);
@@ -190,7 +191,7 @@ public class ConexionDB {
     
     public void insertDetallePedido(String id_pedido, String ProductoID, int cantidad , int total){
 	try {
-		Table table = dynamoDB.getTable(tableName);
+		Table table = dynamoDB.getTable("Detalle_Pedido");
 		Item item = new Item().withPrimaryKey("id_pedido", id_pedido)
                         .withString("Producto", ProductoID)
                         .withNumber("Cantidad", cantidad)
@@ -345,6 +346,41 @@ public class ConexionDB {
             System.out.println("ComboBox de laboratorios poblado correctamente.");
         } catch (Exception e) {
             System.err.println("No se pudo poblar el ComboBox de laboratorios: " + e.getMessage());
+        }
+    }
+    
+    public void finalizarPedido(String IdPedido) {
+        if (IdPedido == null || IdPedido.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay pedido activo.");
+            return;
+        }
+
+        Table detallePedidoTable = dynamoDB.getTable("Detalle_Pedido");
+
+        // Escanear la tabla buscando elementos con el ID de IdPedido
+        ScanSpec scanSpec = new ScanSpec().withFilterExpression("orderID = :orderID")
+                                           .withValueMap(new ValueMap().withString(":orderID", IdPedido));
+
+        List<String> itemsComprados = new ArrayList<>();
+        try {
+            ItemCollection<ScanOutcome> items = detallePedidoTable.scan(scanSpec);
+            items.forEach(item -> {
+                // Construir el resumen de cada elemento (ajusta esto a los atributos de tu tabla)
+                String idProducto = item.getString("id_producto");
+                String nombre = item.getString("Nombre");
+                int cantidad = item.getInt("Cantidad");
+                itemsComprados.add("Producto: " + nombre + " (ID: " + idProducto + "), Cantidad: " + cantidad);
+            });
+
+            // Mostrar el resumen en un JOptionPane
+            String resumen = String.join("\n", itemsComprados);
+            JOptionPane.showMessageDialog(null, "Resumen de su compra:\n" + resumen);
+
+            // Resetear la variable IdPedido
+            IdPedido = null;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al finalizar el pedido: " + e.getMessage());
         }
     }
     
